@@ -3,7 +3,7 @@
 	//establish connection to the database
 	try
 	{
-		$dbh = new PDO('sqlite:db/phplogin.db');
+		$dbh = new PDO('sqlite:phplogin.db');
 		$dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
@@ -43,7 +43,8 @@
 		{
 			$stmt_02 = $dbh->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
 			$stmt_02->bindParam(':username', $username);
-			$stmt_02->bindParam(':password', $password);
+			$stmt_02->bindParam(':password', md5($password));
+			//$stmt_02->bindParam(':password', $password);
 			$stmt_02->execute();
 
 			echo "Successful registration";

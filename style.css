@@ -1,0 +1,26 @@
+html
+{
+  background-color: #ddddff;
+}
+body
+{
+  width: 800px;
+  margin: 0px auto;
+  background-color: #ffffff;
+}
+
+#header
+{
+	border:1px solid black;
+	text-align: center;
+}
+
+#signUp
+{
+
+}
+
+#signIn
+{
+
+}
