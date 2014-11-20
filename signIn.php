@@ -1,16 +1,6 @@
 <?php
 
-	//establish connection to the database
-	try
-	{
-		$dbh = new PDO('sqlite:db/phplogin.db');
-		$dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
-		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch (PDOException $e)
-	{
-		die($e->getMessage());
-	}
+	require_once 'init.php';
 
 	$username = $_POST['username'];
 	$password = $_POST['password'];
@@ -26,9 +16,9 @@
 			$userLoggedIn = $stmt->fetchAll();
 
 			if(count($userLoggedIn) != 1)
-				echo "That password is incorrect!";
+				die("That password is incorrect!");
 			else
-				echo "User exists!";
+				echo "User exists with id = ".$userLoggedIn[0]['id'];	
 		}
 		catch (PDOException $e)
 		{
@@ -38,3 +28,19 @@
 	else
 		die("Enter username and password");
 ?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LTW Project</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<form action='showPolls.php' method='POST'>
+			Now we know the user exists (remember <?php echo $userLoggedIn[0]['id']?>)... let's see some polls! <br>
+			<input type="submit" value="Submit">
+			<input type="hidden" name="user" value="<?php echo $userLoggedIn[0]['id']?>">
+		</form>
+	</body>
+</html>

@@ -1,24 +1,20 @@
 <?php
 
-	//establish connection to the database
-	try
-	{
-		$dbh = new PDO('sqlite:db/phplogin.db');
-		$dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
-		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch (PDOException $e)
-	{
-		die($e->getMessage());
-	}
+	require_once 'init.php';
 
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$confirmPassword = $_POST['confirmPassword'];
-
+	$age = $_POST['age'];
+	$gender = $_POST['gender'];
+	$email = $_POST['email'];
+	
 	//get username and password
 	if($username && $password && $confirmPassword)
 	{
+		if($username == " ")
+			die("Username must have at least one letter");
+
 		if($password != $confirmPassword)
 			die("Incorrect password!");
 
@@ -30,7 +26,13 @@
 			$result = $stmt_01->fetchAll();
 
 			if(count($result) != 0)
+			{
+
+				//print_r($result);
+
 				die("The username is already in use!");
+			}
+				
 			
 		}
 		catch (PDOException $e)
@@ -41,10 +43,13 @@
 		//create user
 		try
 		{
-			$stmt_02 = $dbh->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
+			$stmt_02 = $dbh->prepare('INSERT INTO users (username, password, age, gender, email) 
+				VALUES (:username, :password, :age, :gender, :email)');
 			$stmt_02->bindParam(':username', $username);
 			$stmt_02->bindParam(':password', md5($password));
-			//$stmt_02->bindParam(':password', $password);
+			$stmt_02->bindParam(':age', $age);
+			$stmt_02->bindParam(':gender', $gender);
+			$stmt_02->bindParam(':email', $email);
 			$stmt_02->execute();
 
 			echo "Successful registration";

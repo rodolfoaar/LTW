@@ -1,0 +1,39 @@
+CREATE TABLE users
+(
+	id INTEGER PRIMARY KEY,
+	username TEXT NOT NULL,
+	password TEXT NOT NULL,
+	age INTEGER NOT NULL,
+	gender TEXT NOT NULL,
+	email TEXT NOT NULL
+);
+
+CREATE TABLE polls
+(
+	id INTEGER PRIMARY KEY,
+	user INTEGER NOT NULL,
+	title TEXT NOT NULL
+);
+
+CREATE TABLE pollsQuestions
+(
+	id INTEGER PRIMARY KEY,
+	poll INTEGER NOT NULL,
+	question TEXT NOT NULL
+);
+
+CREATE TABLE pollsChoices
+(
+	id INTEGER PRIMARY KEY,
+	pollQuestion INTEGER NOT NULL,
+	choice TEXT NOT NULL
+);
+
+CREATE TABLE pollsAnswers
+(
+	id INTEGER PRIMARY KEY,
+	user INTEGER NOT NULL,
+	poll INTEGER NOT NULL,
+	question INTEGER NOT NULL,
+	choice INTEGER NOT NULL
+);
