@@ -1,9 +1,24 @@
+<?
+  include_once('database/connection.php'); 
+  include_once('database/post.php');
+
+  try {
+    $posts = getAllPosts($dbh);
+  } catch (PDOException $e) {
+    die($e->getMessage());
+  }
+
+  include ('templates/header.php');
+  include ('templates/posts.php');
+  include ('templates/footer.php');
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>LTW Project</title>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="css/style.css">
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -20,7 +35,7 @@
 	</head>
 	<body>
 
-		<?php include'includes/header.php'; ?>
+		<?php include'templates/header.php'; ?>
 
 		<form action='signUp.php' method='POST' enctype="multipart/form-data">
 			<fieldset id="signUp">
