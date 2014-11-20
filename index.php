@@ -10,7 +10,7 @@
 
   include ('templates/header.php');
   include ('templates/posts.php');
-  include ('templates/footer.php');
+  include ('templates/footer.php'); 
 ?>
 
 <!DOCTYPE html>
