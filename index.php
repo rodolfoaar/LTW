@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>LTW Project</title>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="css/style.css">
-
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-		<script>
-			$(document).ready(function()
-			{
-				$("button").click(function()
-				{
-					alert("hello");
-				});
-			});
-		</script>
-
-	</head>
-	<body>
-
-		<?php include'templates/header.php'; ?>
-
+<?php
+	include ('templates/header.php');	
+?>
 		<form action='signUp.php' method='POST' enctype="multipart/form-data">
 			<fieldset id="signUp">
 				<legend>Sign up</legend>
@@ -80,6 +59,4 @@
 			<source src="music/Spokey Dokey.mp3" type="audio/mpeg">
 		</audio>
 		!-->
-
-	</body>
-</html>
+<?php include ('templates/footer.php');?>
