@@ -1,6 +1,6 @@
 CREATE TABLE users
 (
-	id INTEGER PRIMARY KEY,
+	idUser INTEGER PRIMARY KEY,
 	username TEXT NOT NULL,
 	password TEXT NOT NULL,
 	age INTEGER NOT NULL,
@@ -10,30 +10,36 @@ CREATE TABLE users
 
 CREATE TABLE polls
 (
-	id INTEGER PRIMARY KEY,
-	user INTEGER NOT NULL,
-	title TEXT NOT NULL
+	idPoll INTEGER PRIMARY KEY,
+	idUser INTEGER NOT NULL,
+	title TEXT NOT NULL,
+	FOREIGN KEY(idUser) REFERENCES users(idUser)
 );
 
 CREATE TABLE pollsQuestions
 (
-	id INTEGER PRIMARY KEY,
-	poll INTEGER NOT NULL,
-	question TEXT NOT NULL
+	idPollQuestion INTEGER PRIMARY KEY,
+	idPoll INTEGER NOT NULL,
+	question TEXT NOT NULL,
+	FOREIGN KEY(idPoll) REFERENCES polls(idPoll)
 );
 
 CREATE TABLE pollsChoices
 (
-	id INTEGER PRIMARY KEY,
-	pollQuestion INTEGER NOT NULL,
-	choice TEXT NOT NULL
+	idPollChoice INTEGER PRIMARY KEY,
+	idPollQuestion INTEGER NOT NULL,
+	choice TEXT NOT NULL,
+	FOREIGN KEY(idPollQuestion) REFERENCES pollsQuestions(idPollQuestion)
 );
 
 CREATE TABLE pollsAnswers
 (
 	id INTEGER PRIMARY KEY,
-	user INTEGER NOT NULL,
-	poll INTEGER NOT NULL,
-	question INTEGER NOT NULL,
-	choice INTEGER NOT NULL
+	idPoll INTEGER NOT NULL,
+	idPollQuestion INTEGER NOT NULL,
+	idPollChoice INTEGER NOT NULL,
+	count INTEGER NOT NULL,
+	FOREIGN KEY(idPoll) REFERENCES polls(idPoll),
+	FOREIGN KEY(idPollQuestion) REFERENCES pollsQuestions(idPollQuestion),
+	FOREIGN KEY(idPollChoice) REFERENCES pollsChoices(idPollChoice)
 );
