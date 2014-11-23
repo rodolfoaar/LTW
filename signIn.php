@@ -1,5 +1,26 @@
 <?php
 
+session_set_cookie_params(0);
+session_start();
+
+require_once 'database/user.php';
+
+$user = new User();
+
+if($user->validateUser($_POST['username'],$_POST['password']))
+{
+    header('Location: view_user.php');
+    die();
+}
+else
+{
+    header('Location: index.php?status=failed');
+    die();
+}
+
+//===========================================================
+
+/*
 	require_once 'init.php';
 
 	$username = $_POST['username'];
@@ -44,3 +65,5 @@
 		</form>
 	</body>
 </html>
+
+*/
