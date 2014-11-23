@@ -4,6 +4,7 @@ require_once 'sqlite.php';
 
 class User {
 
+//========================================
 
     function validateUser($un, $pwd)
     {
@@ -19,6 +20,8 @@ class User {
         return false;
     }
 
+//========================================
+
     function logOutUser()
     {
         if(isset($_SESSION['status']))
@@ -27,6 +30,8 @@ class User {
             session_destroy();
         }
     }
+
+//========================================
 
     function isUserLoggedIn()
     {
@@ -38,6 +43,7 @@ class User {
         return true;
 
     }
+
 }
 
 ?>
