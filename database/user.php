@@ -9,7 +9,7 @@ class User {
     function validateUser($un, $pwd)
     {
         $sqlite = new SQLite();
-        $ensure_credentials = $sqlite->checkUserPassword($un, md5($pwd));
+        $ensure_credentials = $sqlite->checkUserPassword($un, $pwd);
 
         if($ensure_credentials)
         {

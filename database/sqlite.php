@@ -23,18 +23,20 @@ class SQLite
 
     //========================================
 
-    public function checkUserPassword ($username, $hashPassword)
+    public function checkUserPassword ($username, $password)
     {
         try
         {
             $stmt = $this->dbh->prepare('SELECT * FROM users WHERE username = :un AND password = :pwd');
             $stmt->bindParam(':un', $username);
-            $stmt->bindParam(':pwd', $hashPassword);
+            $stmt->bindParam(':pwd', md5($password));
             $stmt->execute();
-            $userLoggedIn = $stmt->fetchAll();
+            $userLoggedIn = $stmt->fetch();
 
             if(count($userLoggedIn) != 1)
+            {
                 return false;
+            }
 
             return true;
         }
@@ -88,7 +90,7 @@ class SQLite
             $stmt->bindParam(':email', $userInfo['email']);
             $stmt->execute();
 
-            echo "Successful registration";
+            //echo "Successful registration";
         }
         catch (PDOException $e)
         {

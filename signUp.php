@@ -17,6 +17,7 @@ $userInfo = array(
     'email' => $_POST['email']);
 
 $user->createUser($userInfo);
+
 header('Location: view_user.php');
 
 ?>
