@@ -4,7 +4,7 @@ require_once 'sqlite.php';
 
 class User {
 
-//========================================
+    //========================================
 
     function validateUser($un, $pwd)
     {
@@ -20,7 +20,7 @@ class User {
         return false;
     }
 
-//========================================
+    //========================================
 
     function logOutUser()
     {
@@ -31,7 +31,7 @@ class User {
         }
     }
 
-//========================================
+    //========================================
 
     function isUserLoggedIn()
     {
@@ -42,6 +42,32 @@ class User {
 
         return true;
 
+    }
+
+    //========================================
+
+    function createUser($userInfo)
+    {
+        if(isset($userInfo['username']) && isset($userInfo['password']) && isset($userInfo['confirmPassword']))
+        {
+
+            if($userInfo['username'] == " ")
+                die("Username must have at least one letter");
+
+            if($userInfo['password'] != $userInfo['confirmPassword'])
+                die("Incorrect password!");
+
+            $sqlite = new SQLite();
+
+            if($sqlite->isUserTaken($userInfo['username']))
+                die("The username is already in use!");
+
+            $sqlite->addUser($userInfo);
+
+            return true;
+        }
+        else
+            die("Enter username and password");
     }
 
 }
