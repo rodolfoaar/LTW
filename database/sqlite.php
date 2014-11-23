@@ -43,5 +43,57 @@ class SQLite
             die($e->getMessage());
         }
     }
+
+    //========================================
+
+    public function isUserTaken($username)
+    {
+        //verify if the username is already taken
+        try
+        {
+            $stmt = $this->dbh->prepare('SELECT * FROM users WHERE username = :un');
+            $stmt->bindParam(':un', $username);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+
+            if(count($result) != 0)
+            {
+                return true;
+
+            }
+
+            return false;
+
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+    }
+
+    //========================================
+
+    public function addUser($userInfo)
+    {
+        //add user
+        try
+        {
+            $stmt = $this->dbh->prepare('INSERT INTO users (username, password, age, gender, email)
+				VALUES (:username, :password, :age, :gender, :email)');
+
+            $stmt->bindParam(':username', $userInfo['username']);
+            $stmt->bindParam(':password', md5($userInfo['password']));
+            $stmt->bindParam(':age', $userInfo['age']);
+            $stmt->bindParam(':gender', $userInfo['gender']);
+            $stmt->bindParam(':email', $userInfo['email']);
+            $stmt->execute();
+
+            echo "Successful registration";
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+    }
 }
 ?>
