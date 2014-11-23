@@ -5,19 +5,11 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="css/style.css">
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-		<script>
-			$(document).ready(function()
-			{
-				$("button").click(function()
-				{
-					alert("hello");
-				});
-			});
-		</script>
-
+		<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="js/login.js"></script>
 	</head>
+
 	<body>
 
 	<div id="header">
