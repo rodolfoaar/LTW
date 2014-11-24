@@ -19,5 +19,6 @@ include ('templates/header.php');
 ?>
 
     <h1>Registered User Home Page</h1>
+    <h2>Welcome, <? echo $_SESSION['user'];?>!</h2>
 
 <?php include ('templates/footer.php');?>

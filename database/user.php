@@ -13,6 +13,7 @@ class User {
 
         if($ensure_credentials)
         {
+            $_SESSION['user'] = $un;
             $_SESSION['status'] =  'authorized';
             return true;
         }

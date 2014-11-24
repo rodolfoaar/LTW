@@ -7,7 +7,7 @@ require_once 'database/user.php';
 
 $user = new User();
 
-if($user->validateUser($_POST['username'],$_POST['password']))
+if($user->validateUser($_POST['username_sign_in'],$_POST['password_sign_in']))
 {
     header('Location: view_user.php');
     die();

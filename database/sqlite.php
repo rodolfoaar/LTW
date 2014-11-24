@@ -31,8 +31,9 @@ class SQLite
             $stmt->bindParam(':un', $username);
             $stmt->bindParam(':pwd', md5($password));
             $stmt->execute();
-            $userLoggedIn = $stmt->fetch();
+            $userLoggedIn = $stmt->fetchAll();
 
+            //Change Validation !!!!!!!!!!!!!!!!!!!
             if(count($userLoggedIn) != 1)
             {
                 return false;
