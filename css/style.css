@@ -15,6 +15,11 @@ input
     display: block;
 }
 
+.error
+{
+    color : red;
+}
+
 #signUp
 {
 

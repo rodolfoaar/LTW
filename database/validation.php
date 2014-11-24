@@ -1,24 +1,61 @@
 <?php
 
-class Validation
+function validateSignIn($username, $password)
 {
-    public function validateUsername($username)
-    {
-        if(!isset($username) || $username === '' || strlen($username) > 20)
-        {
-            header('Location: index.php?error=username');
-            die();
+    session_unset();
+
+    $submit_sign_in = true;
+    $_SESSION['formSignIn']['username'] = $_POST['username_sign_in'];
+    $_SESSION['formSignIn']['password'] = $_POST['password_sign_in'];
+
+    $data = cleanSpacesSlashes($username);
+
+    if (!isset($data) || $data === '' || strlen($data) > 20) {
+        if (!isset($_SESSION['errorSignIn']['username'])) {
+            $_SESSION['errorSignIn']['username'] = "Invalid username.";
+            $submit_sign_in = false;
         }
-
     }
 
-    //========================================
+    $info_sign_in = array('username' => $data);
 
-    public function cleanSpacesSlashes($formField)
+    $data = cleanSpacesSlashes($password);
+
+    if(!isset($data) || $data === '')
     {
-        $data = trim($formField);
-        $data = stripslashes($data);
-        return $data;
+        if (!isset($_SESSION['errorSignIn']['password'])) {
+            $_SESSION['errorSignIn']['password'] = "Invalid password.";
+            $submit_sign_in = false;
+        }
     }
 
+    $info_sign_in['password'] = $data;
+
+    if($submit_sign_in)
+    {
+        session_unset();
+        return $info_sign_in;
+    }
+
+    header('Location: index.php');
+    die();
+}
+
+//========================================
+
+function cleanSpacesSlashes($formField)
+{
+    $data = trim($formField);
+    $data = stripslashes($data);
+    return $data;
+}
+
+//========================================
+
+function getFieldVal($fv)
+{
+    if(isset($fv))
+    {
+        return $fv;
+    }
 }

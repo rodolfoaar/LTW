@@ -6,7 +6,7 @@ class User {
 
     //========================================
 
-    function validateUser($un, $pwd)
+    function logInUser($un, $pwd)
     {
         $sqlite = new SQLite();
         $ensure_credentials = $sqlite->checkUserPassword($un, $pwd);
@@ -20,6 +20,7 @@ class User {
         }
         else
         {
+            //CHANGE THIS: LOG IN FAILS USE SESSION STATUS!!!!!!!!
             header('Location: index.php?error=invalid_sign_in');
             die();
         }
