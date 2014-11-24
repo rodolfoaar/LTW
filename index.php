@@ -15,16 +15,23 @@ if($user->isUserLoggedIn())
 }
 
 //If the user entered wrong username / password
-if(isset($_GET['status']) && ($_GET['status'] == 'failed'))
+if(isset($_GET['error']))
 {
-    $response = false;
+    if($_GET['error'] === 'username')
+    {
+        $response = "Invalid username field.";
+    }
+    else
+    {
+        $response = "Please enter a correct username and password";
+    }
 }
 
 include ('templates/header.php');
 
 if(isset($response))
 {?>
-    <h4>Please enter a correct username and password</h4>
+    <h4><? echo $response ?></h4>
 <?}
 
 include ('templates/sign_up.html');

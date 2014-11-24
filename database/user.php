@@ -15,10 +15,14 @@ class User {
         {
             $_SESSION['user'] = $un;
             $_SESSION['status'] =  'authorized';
-            return true;
+            header('Location: view_user.php');
+            die();
         }
-
-        return false;
+        else
+        {
+            header('Location: index.php?error=invalid_sign_in');
+            die();
+        }
     }
 
     //========================================
