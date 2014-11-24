@@ -4,23 +4,33 @@
 
 		<script>
 			var choices = 1;
-			//var choicesInput = new Object();
+			var pollCreated = false;
 
 			function insertQuestion()
 			{
 				var text = "<br> question:";
 				var field = "<br> <input type='text' name='question' >";
-				$("body #question").append(text, field);
-				$("#inserQuestion").hide();
-				$("#insertChoice").show();
+
+				if(!pollCreated)
+				{
+					
+					$("#question").append(text, field);
+					$("#inserQuestion").hide();
+					$("#insertChoice").show();
+				}
+				else
+				{
+					$("#question").append(text, field);
+					$("#inserQuestion").hide();
+					$("#insertChoice").show();
+				}
 			}
 
 			function insertChoise()
 			{
 				var text = "<br> choise:";
 				var field = "<br> <input type='text' name='choice"+choices+"'>";
-				//var field = "<br> <input type='text' name='choice'>";
-				$("body #question").after(text, field);
+				$("#choice").append(text, field);
 				choices++;
 
 				if(choices > 2)
@@ -31,6 +41,8 @@
 
 			function submitQuestion()
 			{
+				pollCreated = true;
+
 				var numberOfOptions = choices - 1;
 				var optionNumber, option;
 
@@ -43,6 +55,14 @@
 					option = $(optionNumber).val();
 					console.log(option);
 				}
+
+				$("#inserQuestion").show();
+				choices = 1;
+				$("#choice").empty();
+				$("#question").empty();
+				$("#insertChoice").hide();
+				$("#submitPoll").hide();
+				$("input:text").prop("disabled",true);
 			}
 		</script>
 
@@ -53,6 +73,8 @@
 			Insert poll title:<br>
 			<input type='text' name='pollTitle' required="required"> <br>
 			<section id="question">
+			</section>
+			<section id="choice">
 			</section>
 		</fieldset> 
 		<button id="inserQuestion" onclick="insertQuestion()">Insert question</button>
