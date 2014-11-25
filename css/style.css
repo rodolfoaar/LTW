@@ -10,11 +10,6 @@ body
   background-color: #ffffff;
 }
 
-input
-{
-    display: block;
-}
-
 .error
 {
     color : red;

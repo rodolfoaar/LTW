@@ -11,10 +11,8 @@ function validateSignIn($username, $password)
     $data = cleanSpacesSlashes($username);
 
     if (!isset($data) || $data === '' || strlen($data) > 20) {
-        if (!isset($_SESSION['errorSignIn']['username'])) {
-            $_SESSION['errorSignIn']['username'] = "Invalid username.";
-            $submit_sign_in = false;
-        }
+        $_SESSION['errorSignIn']['username'] = "Invalid username.";
+        $submit_sign_in = false;
     }
 
     $info_sign_in = array('username' => $data);
@@ -23,10 +21,8 @@ function validateSignIn($username, $password)
 
     if(!isset($data) || $data === '')
     {
-        if (!isset($_SESSION['errorSignIn']['password'])) {
-            $_SESSION['errorSignIn']['password'] = "Invalid password.";
-            $submit_sign_in = false;
-        }
+        $_SESSION['errorSignIn']['password'] = "Invalid password.";
+        $submit_sign_in = false;
     }
 
     $info_sign_in['password'] = $data;

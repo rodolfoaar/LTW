@@ -73,21 +73,25 @@ include ('templates/header.php');
     <fieldset>
         <legend>Sign in</legend>
 
+        <h3 class="error"><? echo getFieldVal($_SESSION['status']) ?></h3>
+
+        <label class="user">Username:
+            <input type="text" name="username_sign_in" value ="<? echo getFieldVal($_SESSION['formSignIn']['username']); ?>" required="required">
+            <span class="error">* <? echo getFieldVal($_SESSION['errorSignIn']['username']); ?></span>
+        </label>
+
+        <br><br>
+
+        <label class="pass">Password:
+            <input type="password" name="password_sign_in" value ="<? echo getFieldVal($_SESSION['formSignIn']['password']); ?>" required="required">
+            <span class="error">* <? echo getFieldVal($_SESSION['errorSignIn']['password']); ?></span>
+        </label>
+
         <p class="error">* - required field</p>
 
-        <label>Username:
-            <input type="text" name="username_sign_in" value ="<?= getFieldVal($_SESSION['formSignIn']['username']); ?>" required="required">
-            <span class="error">* <? echo getFieldVal($_SESSION['errorSignIn']['username']); ?></span>
-</label>
+        <input type="image" src="images/submit-icon.png" alt="Submit" align="right" width="64" height="64">
 
-<label>Password:
-    <input type="password" name="password_sign_in" value ="<?= getFieldVal($_SESSION['formSignIn']['password']); ?>" required="required">
-    <span class="error">* <? echo getFieldVal($_SESSION['errorSignIn']['password']); ?></span>
-</label>
-
-<input type="image" src="images/submit-icon.png" alt="Submit" align="right" width="64" height="64">
-
-</fieldset>
+    </fieldset>
 </form>
 
 <?

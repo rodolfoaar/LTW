@@ -20,8 +20,8 @@ class User {
         }
         else
         {
-            //CHANGE THIS: LOG IN FAILS USE SESSION STATUS!!!!!!!!
-            header('Location: index.php?error=invalid_sign_in');
+            $_SESSION['status'] = 'Please enter a correct username and password.';
+            header('Location: index.php');
             die();
         }
     }
