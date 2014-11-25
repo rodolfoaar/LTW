@@ -5,8 +5,7 @@ session_start();
 
 
 require_once 'database/user.php';
-
-$user = new User();
+require_once 'database/validation.php';
 
 $userInfo = array(
     'username' => $_POST['username'],
@@ -16,7 +15,11 @@ $userInfo = array(
     'gender' => $_POST['gender'],
     'email' => $_POST['email']);
 
-$user->createUser($userInfo);
+$valid = new Validation();
+$cleanUserInfo = $valid->validateSignUp($userInfo);
+
+$user = new User();
+$user->createUser($cleanUserInfo);
 
 header('Location: view_user.php');
 
