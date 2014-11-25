@@ -25,6 +25,8 @@ include ('templates/header.php');
     <fieldset>
         <legend>Sign up</legend>
 
+        <h3 class="error"><?php echo getFieldVal($_SESSION['signUp']) ?></h3>
+
         <label> Username:
             <input type="text" name="username" value ="<?php echo getFieldVal($_SESSION['formSignUp']['username']); ?>" required="required">
             <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['username']); ?></span>
@@ -91,7 +93,7 @@ include ('templates/header.php');
     <fieldset>
         <legend>Sign in</legend>
 
-        <h3 class="error"><?php echo getFieldVal($_SESSION['status']) ?></h3>
+        <h3 class="error"><?php echo getFieldVal($_SESSION['signIn']) ?></h3>
 
         <label class="user">Username:
             <input type="text" name="username_sign_in" value ="<?php echo getFieldVal($_SESSION['formSignIn']['username']); ?>" required="required">

@@ -6,7 +6,7 @@ class User {
 
     //========================================
 
-    function logInUser($un, $pwd)
+    public function logInUser($un, $pwd)
     {
         $sqlite = new SQLite();
         $ensure_credentials = $sqlite->checkUserPassword($un, $pwd);
@@ -20,7 +20,7 @@ class User {
         }
         else
         {
-            $_SESSION['status'] = 'Please enter a correct username and password.';
+            $_SESSION['signIn'] = 'Please enter a correct username and password.';
             header('Location: index.php');
             die();
         }
@@ -28,7 +28,7 @@ class User {
 
     //========================================
 
-    function logOutUser()
+    public function logOutUser()
     {
         if(isset($_SESSION['status']))
         {
@@ -39,7 +39,7 @@ class User {
 
     //========================================
 
-    function isUserLoggedIn()
+    public function isUserLoggedIn()
     {
         if($_SESSION['status'] != 'authorized')
         {
@@ -52,28 +52,23 @@ class User {
 
     //========================================
 
-    function createUser($userInfo)
+    public function createUser($userInfo)
     {
-        if(isset($userInfo['username']) && isset($userInfo['password']) && isset($userInfo['confirmPassword']))
+        $sqlite = new SQLite();
+
+        if($sqlite->isUserTaken($userInfo['username']))
         {
-
-            if($userInfo['username'] == " ")
-                die("Username must have at least one letter");
-
-            if($userInfo['password'] != $userInfo['confirmPassword'])
-                die("Incorrect password!");
-
-            $sqlite = new SQLite();
-
-            if($sqlite->isUserTaken($userInfo['username']))
-                die("The username is already in use!");
-
-            $sqlite->addUser($userInfo);
-
-            return true;
+            $_SESSION['signUp'] = 'Username is already in use.';
+            header('Location: index.php');
+            die();
         }
-        else
-            die("Enter username and password");
+
+        $sqlite->addUser($userInfo);
+
+        $_SESSION['user'] = $userInfo['username'];
+        $_SESSION['status'] =  'authorized';
+        header('Location: view_user.php');
+        die();
     }
 
 }

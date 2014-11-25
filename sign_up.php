@@ -3,7 +3,6 @@
 session_set_cookie_params(0);
 session_start();
 
-
 require_once 'database/user.php';
 require_once 'database/validation.php';
 
@@ -17,8 +16,6 @@ $userInfo = array(
 
 $valid = new Validation();
 $cleanUserInfo = $valid->validateSignUp($userInfo);
-
-var_dump($cleanUserInfo);
 
 $user = new User();
 $user->createUser($cleanUserInfo);
