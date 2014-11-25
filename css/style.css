@@ -10,9 +10,9 @@ body
   background-color: #ffffff;
 }
 
-input
+.error
 {
-    display: block;
+    color : red;
 }
 
 #signUp
