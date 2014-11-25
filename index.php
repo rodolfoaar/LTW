@@ -21,7 +21,7 @@ include ('templates/header.php');
 
 <!-- SIGN UP ================================================ -->
 
-<form name="signUp" action='signUp.php' method='POST' enctype="multipart/form-data">
+<form name="signUp" action='sign_up.php' method='POST' enctype="multipart/form-data">
     <fieldset>
         <legend>Sign up</legend>
 
@@ -41,7 +41,7 @@ include ('templates/header.php');
             <input type="number" name="age" value="18" min="18" max="100" step="1">
         </label>
 
-        Sex:
+        Gender:
         <label>Male:
             <input type="radio" name="gender" value="male">
         </label>
@@ -77,14 +77,14 @@ include ('templates/header.php');
 
         <label class="user">Username:
             <input type="text" name="username_sign_in" value ="<? echo getFieldVal($_SESSION['formSignIn']['username']); ?>" required="required">
-            <span class="error">* <? echo getFieldVal($_SESSION['errorSignIn']['username']); ?></span>
+            <span class="error">* <? echo getFieldVal($_SESSION['errorMsg']['username']); ?></span>
         </label>
 
         <br><br>
 
         <label class="pass">Password:
             <input type="password" name="password_sign_in" value ="<? echo getFieldVal($_SESSION['formSignIn']['password']); ?>" required="required">
-            <span class="error">* <? echo getFieldVal($_SESSION['errorSignIn']['password']); ?></span>
+            <span class="error">* <? echo getFieldVal($_SESSION['errorMsg']['password']); ?></span>
         </label>
 
         <p class="error">* - required field</p>
