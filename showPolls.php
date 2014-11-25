@@ -17,9 +17,9 @@
   /////////////////
   try
     {
-      $stmt= $dbh->prepare('SELECT * FROM polls');
-      $stmt->execute();
-      $result = $stmt->fetchALL();
+      $stmtPoll= $dbh->prepare('SELECT * FROM polls');
+      $stmtPoll->execute();
+      $resultPoll = $stmtPoll->fetchALL();
     }
     catch (PDOException $e)
     {
@@ -27,22 +27,25 @@
     }
 
 ?>
+
 <!DOCTYPE html>
 <html>
   <head>
     <title></title>
     <meta charset="utf-8">
-    <script>
-    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </head>
   <body>
-    <select id="colors">
-      <?php
-        foreach ($result as $poll)
-        {
-          ?><option><?=$poll['title']?></option><?php
-        }
-      ?>
-    </select>
+    <form action="answerPoll.php" method="POST">
+      <select id="polls" name="pollsTitles">
+        <?php
+          foreach ($resultPoll as $poll)
+          {
+            ?><option><?=$poll['title']?></option><?php
+          }
+        ?>
+      </select>
+      <input type="submit" value="Submit">
+    </form>
     </body>
 </html>
