@@ -18,6 +18,8 @@ $userInfo = array(
 $valid = new Validation();
 $cleanUserInfo = $valid->validateSignUp($userInfo);
 
+var_dump($cleanUserInfo);
+
 $user = new User();
 $user->createUser($cleanUserInfo);
 
