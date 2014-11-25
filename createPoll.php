@@ -3,21 +3,25 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 		<script>
+			var MAX_NUMBER_OF_CHOICES = 10;
 			var i = 1;
 
 			function addChoiceF()
 			{
-				i++;
-				var div = document.createElement('div');
-				var text = 'Insert choice:<br>';
-				var inputText = '<input type="text" name="pollChoice_'+i+'" required="required">';
-				var inputButtonAdd = '<input type="button" id="addChoice()" onClick="addChoiceF()" value="+">';
-				var inputButtonRemove = '<input type="button" onClick="removeChoiceF(this)" value="-">';
-				div.innerHTML = text+inputText+inputButtonAdd+inputButtonRemove;
-				document.getElementById('choice').appendChild(div);
+				if(i <MAX_NUMBER_OF_CHOICES)
+				{
+					i++;
+					var div = document.createElement('div');
+					var text = 'Insert choice:<br>';
+					var inputText = '<input type="text" name="pollChoice_'+i+'" required="required">';
+					var inputButtonAdd = '<input type="button" id="addChoice()" onClick="addChoiceF()" value="+">';
+					var inputButtonRemove = '<input type="button" onClick="removeChoiceF(this)" value="-">';
+					div.innerHTML = text+inputText+inputButtonAdd+inputButtonRemove;
+					document.getElementById('choice').appendChild(div);
 
-				if(i >= 2)
-					$("#submitPoll").show();
+					if(i >= 2)
+						$("#submitPoll").show();
+				}
 			}
 
 			function removeChoiceF(div)
@@ -44,6 +48,7 @@
 					<input type="text" name="pollChoice_1" required="required">
 					<input type="button" id="addChoice()" onClick="addChoiceF()" value="+">
 				</div>
+					<input type="hidden" name="MAX_NUMBER_OF_CHOICES" value="10">
 			</fieldset> 
 			<input type="submit" id="submitPoll" value="Submit poll" hidden="hidden">
 		</form>

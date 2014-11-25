@@ -7,20 +7,17 @@
 		$pollQuestion = $_POST['pollQuestion'];
 	
 	$list = "";
-	$i = 1;
-	$more = TRUE;
+	
 
-	while($more)
+	$MAX_NUMBER_OF_CHOICES = $_POST['MAX_NUMBER_OF_CHOICES'];
+
+	for($i = 1; $i < $MAX_NUMBER_OF_CHOICES; $i++)
 	{
-		if((isset($_POST['pollChoice_'.$i])) && ($_POST['pollChoice_'.$i] != " "))
+		if((isset($_POST['pollChoice_'.$i])) && (trim($_POST['pollChoice_'.$i]) != ""))
 		{
 			$list .= $_POST['pollChoice_'.$i];
 			$list .= "<br>";
 		}
-		else
-			$more = FALSE;
-
-		$i++;
 	}
 
 	echo $pollTitle;
