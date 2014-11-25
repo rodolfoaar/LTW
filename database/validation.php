@@ -10,13 +10,13 @@ class Validation
 
         $this->submit_form = true;
         $_SESSION['formSignIn']['username'] = $username;
-        $_SESSION['formSignIn']['password'] = $password;
 
-        $data = $this->validateUsername($username);
+        $data = $this->validateField('username', $username, 'errorSignIn');
 
         $info_sign_in = array('username' => $data);
 
-        $data = $this->validatePassword($password);
+        $data = $this->validateField('password', $password, 'errorSignIn');
+
 
         $info_sign_in['password'] = $data;
 
@@ -37,27 +37,29 @@ class Validation
 
         $this->submit_form = true;
         $_SESSION['formSignUp']['username'] = $userInfo['username'];
-        $_SESSION['formSignUp']['password'] = $userInfo['password'];
-        $_SESSION['formSignUp']['confirmPassword'] = $userInfo['confirmPassword'];
-        $_SESSION['formSignUp']['age'] = $userInfo['age'];
-        $_SESSION['formSignUp']['gender'] = $userInfo['gender'];
         $_SESSION['formSignUp']['email'] = $userInfo['email'];
 
-        $data = $this->validateUsername($userInfo['username']);
+        $data = $this->validateField('username', $userInfo['username'], 'errorSignUp');
         $info_sign_up = array('username' => $data);
 
-        $data = $this->validatePassword($userInfo['password']);
+        $data = $this->validateField('password', $userInfo['password'], 'errorSignUp');
         $info_sign_up['password'] = $data;
 
-        $this->confirmPassword($userInfo['password'], $userInfo['confirmPassword']);
+        $confPass = $this->validateField('confirmPassword', $userInfo['confirmPassword'], 'errorSignUp');
 
-        $data = $this->validateAge($userInfo['age']);
+        if($data !== $confPass)
+        {
+            $this->submit_form = false;
+            $_SESSION['errorSignUp']['confirmPassword'] = "Doesn't match password.";
+        }
+
+        $data = $this->validateAge($userInfo['age'], 'errorSignUp');
         $info_sign_up['age'] = $data;
 
-        $data = $this->validateGender($userInfo['gender']);
+        $data = $this->validateField('gender', $userInfo['gender'], 'errorSignUp');
         $info_sign_up['gender'] = $data;
 
-        $data = $this->validateEmail($userInfo['email']);
+        $data = $this->validateEmail($userInfo['email'], 'errorSignUp');
         $info_sign_up['email'] = $data;
 
         if ($this->submit_form) {
@@ -72,40 +74,18 @@ class Validation
 
 //========================================
 
-    public function validateUsername($un)
+    public function validateField($field, $fieldVal, $arrayError)
     {
-        $data = $this->cleanInput($un);
+        $data = $this->cleanInput($fieldVal);
 
-        if (empty($un)) {
-            $_SESSION['errorMsg']['username'] = "Username is required.";
-            $this->submit_form = false;
-            return false;
-        } else {
-
-            if (!isset($data) || $data === '' || strlen($data) > 20) {
-                $_SESSION['errorMsg']['username'] = "Invalid username.";
-                $this->submit_form = false;
-                return false;
-            }
-        }
-
-        return $data;
-    }
-
-//========================================
-
-    public function validatePassword($pass)
-    {
-        $data = $this->cleanInput($pass);
-
-        if (empty($pass)) {
-            $_SESSION['errorMsg']['password'] = "Password is required.";
+        if (empty($fieldVal)) {
+            $_SESSION[$arrayError][$field] = $field." is required.";
             $this->submit_form = false;
             return false;
         } else {
 
             if (!isset($data) || $data === '') {
-                $_SESSION['errorMsg']['password'] = "Invalid password.";
+                $_SESSION[$arrayError][$field] = "Invalid ".$field;
                 $this->submit_form = false;
                 return false;
             }
@@ -116,45 +96,18 @@ class Validation
 
 //========================================
 
-    public function confirmPassword($pass, $confPass)
+    public function validateAge($fieldVal, $arrayError)
     {
-        $p = $this->cleanInput($pass);
-        $cp = $this->cleanInput($confPass);
+        $data = $this->cleanInput($fieldVal);
 
-        if (empty($confPass)) {
-            $_SESSION['errorMsg']['confirmPassword'] = "Confirm Password is required.";
-            $this->submit_form = false;
-            return false;
-        } else {
-
-            if (!isset($cp) || $cp === '') {
-                $_SESSION['errorMsg']['confirmPassword'] = "Invalid confirm password.";
-                $this->submit_form = false;
-                return false;
-            }
-        }
-
-        if($p !== $cp)
-        {
-            $this->submit_form = false;
-        }
-
-    }
-
-//========================================
-
-    public function validateAge($age)
-    {
-        $data = $this->cleanInput($age);
-
-        if (empty($age)) {
-            $_SESSION['errorMsg']['age'] = "Age is required.";
+        if (empty($fieldVal)) {
+            $_SESSION[$arrayError]['age'] = "Age is required.";
             $this->submit_form = false;
             return false;
         } else {
 
             if (!filter_var($data, FILTER_VALIDATE_INT)) {
-                $_SESSION['errorMsg']['age'] = "Invalid age.";
+                $_SESSION[$arrayError]['age'] = "Invalid age.";
                 $this->submit_form = false;
                 return false;
             }
@@ -165,40 +118,18 @@ class Validation
 
 //========================================
 
-    public function validateGender($gender)
+    public function validateEmail($fieldVal, $arrayError)
     {
-        $data = $this->cleanInput($gender);
+        $data = $this->cleanInput($fieldVal);
 
-        if (empty($gender)) {
-            $_SESSION['errorMsg']['gender'] = "Gender is required.";
-            $this->submit_form = false;
-            return false;
-        } else {
-
-            if (!isset($data) || $data === '' || strlen($data) > 20) {
-                $_SESSION['errorMsg']['gender'] = "Invalid gender.";
-                $this->submit_form = false;
-                return false;
-            }
-        }
-
-        return $data;
-    }
-
-//========================================
-
-    public function validateEmail($email)
-    {
-        $data = $this->cleanInput($email);
-
-        if (empty($email)) {
-            $_SESSION['errorMsg']['email'] = "Email is required.";
+        if (empty($fieldVal)) {
+            $_SESSION[$arrayError]['email'] = "email is required.";
             $this->submit_form = false;
             return false;
         } else {
 
             if (!filter_var($data, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['errorMsg']['email'] = "Invalid email.";
+                $_SESSION[$arrayError]['email'] = "Invalid email.";
                 $this->submit_form = false;
                 return false;
             }

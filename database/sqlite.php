@@ -91,7 +91,6 @@ class SQLite
             $stmt->bindParam(':email', $userInfo['email']);
             $stmt->execute();
 
-            //echo "Successful registration";
         }
         catch (PDOException $e)
         {
