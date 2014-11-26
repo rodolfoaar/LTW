@@ -73,12 +73,13 @@
 	<body>
 		<form action="xxx.php" method="POST">
 			<h1> <?= $poolTitle?> </h1>
+			 <img src="<?= 'images/originals/'.$idPoll.'.jpg'?>" alt="<?= $idPollQuestion?>"> 
 			<h2> <?= $pollQuestion?> </h2>
 			<?php
 				foreach ($resultChoices as $choices)
 				{
 					?>
-					<input type="radio" name="pollChoice" value="xxx">
+					<input type="radio" name="pollChoice" value="<?= $choices['id']?>">
 					<?= $choices['choice']?><br><?php
 				}
 			?>
