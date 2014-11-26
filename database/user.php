@@ -30,11 +30,9 @@ class User {
 
     public function logOutUser()
     {
-        if(isset($_SESSION['status']))
-        {
-            session_unset();
-            session_destroy();
-        }
+        session_unset();
+        session_destroy();
+        header('Location: index.php');
     }
 
     //========================================
