@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="js/jquery.min.js"></script>
 
 		<script>
 			var MAX_NUMBER_OF_CHOICES = 10;
@@ -36,11 +36,13 @@
 
 	</head>
 	<body>
-		<form action="insertPoll.php" method="POST">
+		<form action="insertPoll.php" method="POST" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Poll</legend>
 				Insert title:<br>
 				<input type="text" name="pollTitle" required="required"> <br>
+				Insert image:<br>
+				<input type="file" name="picture" required="required"> <br>
 				Insert question:<br>
 				<input type="text" name="pollQuestion" required="required"> <br>
 				<div id="choice">
@@ -49,6 +51,7 @@
 					<input type="button" id="addChoice()" onClick="addChoiceF()" value="+">
 				</div>
 					<input type="hidden" name="MAX_NUMBER_OF_CHOICES" value="10">
+					<input type="hidden" name="MAX_FILE_SIZE" value="30000"/>
 			</fieldset> 
 			<input type="submit" id="submitPoll" value="Submit poll" hidden="hidden">
 		</form>

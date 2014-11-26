@@ -78,7 +78,7 @@
 				foreach ($resultChoices as $choices)
 				{
 					?>
-					<input type="radio" name="pollChoice" value="xxx">
+					<input type="radio" name="pollChoice" value="<?= $choices['id']?>">
 					<?= $choices['choice']?><br><?php
 				}
 			?>
