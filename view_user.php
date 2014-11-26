@@ -17,8 +17,11 @@ if(!$user->isUserLoggedIn())
 include ('templates/header.php');
 
 ?>
+    <div id="user"></div>
+    <a id="user_log_out" href="log_out.php">Log Out</a>
 
-    <h1>Registered User Home Page</h1>
-    <h2>Welcome, <? echo $_SESSION['user'];?>!</h2>
 
-<?php include ('templates/footer.php');?>
+<?php
+
+include ('templates/footer.php');
+?>
