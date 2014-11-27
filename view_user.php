@@ -16,11 +16,9 @@ if(!$user->isUserLoggedIn())
 
 include ('templates/header.php');
 
-include ('createPoll.php');
-
 ?>
+
+    <a id="create_poll_link" href="createPoll.php">Create Poll</a>
     <a id="user_log_out" href="log_out.php">Log Out</a>
-<?php
 
-include ('templates/footer.php');
-?>
+<?php include ('templates/footer.php'); ?>
