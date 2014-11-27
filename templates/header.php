@@ -5,9 +5,9 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="css/style.css">
 
-		<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="js/user.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/create_poll.js"></script>
 
 	</head>
 

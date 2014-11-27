@@ -116,5 +116,25 @@ class SQLite
             die($e->getMessage());
         }
     }
+
+    //========================================
+
+    public function insertPoll($idUser, $pollTitle)
+    {
+        try
+        {
+            $stmtPolls = $this->dbh->prepare('INSERT INTO polls (idUser, title) VALUES (:idUser, :title)');
+            $stmtPolls->bindParam(':idUser', $idUser);
+            $stmtPolls->bindParam(':title', $pollTitle);
+            $stmtPolls->execute();
+
+            return $this->dbh->lastInsertId();
+
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+    }
 }
 ?>

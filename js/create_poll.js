@@ -23,10 +23,10 @@ function addQuestionF(event)
                                 <ul> \
                                     <p>Insert choices:</p> \
                                     <li> \
-                                        <input type="text" id="choice1" name="pollChoice" > \
+                                        <input type="text" id="choice1" name="pollChoice" required> \
                                     </li> \
                                     <li> \
-                                        <input type="text" id="choice2" name="pollChoice" > \
+                                        <input type="text" id="choice2" name="pollChoice" required> \
                                         <input type="button" id="add_question" onclick="addChoiceF(event)" value="+" > \
                                     </li> \
                                 </ul> \

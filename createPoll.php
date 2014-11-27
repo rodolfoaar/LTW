@@ -18,7 +18,7 @@ include ('templates/header.php');
 
 ?>
 
-<form id="insert_poll" action="save_poll.php" method="POST">
+<form id="insert_poll" action="save_poll.php" method="POST" enctype="multipart/form-data">
 
     <fieldset>
         <legend>Poll</legend>
@@ -39,11 +39,11 @@ include ('templates/header.php');
                     <p>Insert choices:</p>
 
                     <li>
-                        <input type="text" name="pollChoice_2" >
+                        <input type="text" name="pollChoice_2" required>
                     </li>
 
                     <li>
-                        <input type="text" name="pollChoice_3" >
+                        <input type="text" name="pollChoice_3" required>
                         <input type="button" id="add_question" onclick="addChoiceF(event)" value="+" >
                     </li>
 
