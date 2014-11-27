@@ -13,7 +13,7 @@ class User {
 
         if($ensure_credentials)
         {
-            $_SESSION['user'] = $un;
+            $_SESSION['userId'] = $sqlite->getUserID($un);
             $_SESSION['status'] =  'authorized';
             header('Location: view_user.php');
             die();

@@ -49,6 +49,25 @@ class SQLite
 
     //========================================
 
+    public function getUserID($username)
+    {
+        try
+        {
+            $stmt = $this->dbh->prepare('SELECT idUser FROM users WHERE username = :un');
+            $stmt->bindParam(':un', $username);
+            $stmt->execute();
+            $userLoggedIn = $stmt->fetch();
+
+            return $userLoggedIn['idUser'];
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+    }
+
+    //========================================
+
     public function isUserTaken($username)
     {
         //verify if the username is already taken
