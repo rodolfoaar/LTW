@@ -1,59 +1,34 @@
-<html>
-	<head>
-		<script src="js/jquery.min.js"></script>
+<form id="insert_poll" action="insertPoll.php" method="POST">
 
-		<script>
-			var MAX_NUMBER_OF_CHOICES = 10;
-			var i = 1;
+    <fieldset>
+        <legend>Poll</legend>
 
-			function addChoiceF()
-			{
-				if(i <MAX_NUMBER_OF_CHOICES)
-				{
-					i++;
-					var div = document.createElement('div');
-					var text = 'Insert choice:<br>';
-					var inputText = '<input type="text" name="pollChoice_'+i+'" required="required">';
-					var inputButtonAdd = '<input type="button" id="addChoice()" onClick="addChoiceF()" value="+">';
-					var inputButtonRemove = '<input type="button" onClick="removeChoiceF(this)" value="-">';
-					div.innerHTML = text+inputText+inputButtonAdd+inputButtonRemove;
-					document.getElementById('choice').appendChild(div);
+        <p>Insert title: <input id="poll_title" type="text" name="pollTitle" required="required"></p>
 
-					if(i >= 2)
-						$("#submitPoll").show();
-				}
-			}
+        <ul id="poll_list">
 
-			function removeChoiceF(div)
-			{
-				document.getElementById('choice').removeChild(div.parentNode);
-				i--;
+            <li class="question">
+                <p>Insert question:
+                    <input class="poll_question" type="text" name="pollQuestion" required="required">
+                    <input type="button" id="remove_question" value="Remove question" hidden>
+                </p>
 
-				if(i < 2)
-					$("#submitPoll").hide();
-			}
-		</script>
+                <ul>
+                    <p>Insert choices:</p>
+                    <li><input type="text" name="pollChoice" ></li>
+                    <li><input type="text" name="pollChoice" ></li>
+                    <li><input type="text" name="pollChoice" ></li>
+                    <li><input type="text" name="pollChoice" ></li>
+                    <li><input type="text" name="pollChoice" ></li>
 
-	</head>
-	<body>
-		<form action="insertPoll.php" method="POST" enctype="multipart/form-data">
-			<fieldset>
-				<legend>Poll</legend>
-				Insert title:<br>
-				<input type="text" name="pollTitle" required="required"> <br>
-				Insert image:<br>
-				<input type="file" name="picture" required="required"> <br>
-				Insert question:<br>
-				<input type="text" name="pollQuestion" required="required"> <br>
-				<div id="choice">
-					Insert choice:<br>
-					<input type="text" name="pollChoice_1" required="required">
-					<input type="button" id="addChoice()" onClick="addChoiceF()" value="+">
-				</div>
-					<input type="hidden" name="MAX_NUMBER_OF_CHOICES" value="10">
-					<input type="hidden" name="MAX_FILE_SIZE" value="30000"/>
-			</fieldset> 
-			<input type="submit" id="submitPoll" value="Submit poll" hidden="hidden">
-		</form>
-	</body>
-</html>
+                </ul>
+            </li>
+
+        </ul>
+
+        <input type="button" id="add_another_question" value="Add question">
+        <input type="submit" id="submitPoll" value="Submit poll">
+
+    </fieldset>
+
+</form>
