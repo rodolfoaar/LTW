@@ -5,6 +5,8 @@
 
         <p>Insert title: <input id="poll_title" type="text" name="pollTitle" required="required"></p>
 
+        <p>Insert image: <input type="file" name="picture" required="required"></p>
+
         <ul id="poll_list">
 
             <li class="question">
@@ -15,13 +17,18 @@
 
                 <ul>
                     <p>Insert choices:</p>
-                    <li><input type="text" name="pollChoice" ></li>
-                    <li><input type="text" name="pollChoice" ></li>
-                    <li><input type="text" name="pollChoice" ></li>
-                    <li><input type="text" name="pollChoice" ></li>
-                    <li><input type="text" name="pollChoice" ></li>
+
+                    <li>
+                        <input type="text" name="pollChoice" >
+                    </li>
+
+                    <li>
+                        <input type="text" name="pollChoice" >
+                        <input type="button" id="add_question" onclick="addChoiceF(event)" value="+" >
+                    </li>
 
                 </ul>
+
             </li>
 
         </ul>
