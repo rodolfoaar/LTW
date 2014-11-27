@@ -3,8 +3,11 @@ $(setUp);
 
 //Initial setup
 function setUp(){
+    $("#insert_poll").submit(insertPoll)
     $("#add_another_question").click(addChoiceF);
 }
+
+//============================================================
 
 function addChoiceF(event)
 {
@@ -20,8 +23,19 @@ function addChoiceF(event)
     $("#poll_list").append(question_block);
 }
 
+//============================================================
+
 function removeChoiceF(event)
 {
     console.log("Click");
     $(event.target).closest("li").remove();
+}
+
+//============================================================
+
+function insertPoll(event)
+{
+    event.preventDefault();
+
+    console.log($(event.target).html());
 }

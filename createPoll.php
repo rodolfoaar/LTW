@@ -1,4 +1,4 @@
-<form action="insertPoll.php" method="POST">
+<form id="insert_poll" action="insertPoll.php" method="POST">
 
     <fieldset>
         <legend>Poll</legend>
@@ -30,7 +30,5 @@
         <input type="submit" id="submitPoll" value="Submit poll">
 
     </fieldset>
-
-
 
 </form>
