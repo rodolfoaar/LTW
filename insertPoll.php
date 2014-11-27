@@ -20,10 +20,24 @@
 	//////////////////////////
 	$idUser = 1;
 
+	///////////////////////////////////////////////
+	//verify if the poll's name already exists...//
+	///////////////////////////////////////////////
+	if((isset($_POST['pollTitle'])) && (trim($_POST['pollTitle']) != ""))
+		$pollTitle = $_POST['pollTitle'];
+
+	$stmtPollsTitle = $dbh->prepare('SELECT * FROM polls WHERE title = :title');
+	$stmtPollsTitle->bindParam(':title', $pollTitle);
+	$stmtPollsTitle->execute();
+	$result = $stmtPollsTitle->fetchAll();
+
+	if(count($result) != 0)
+		die("Poll's name already taken!");
+
 	$stmtPolls = $dbh->prepare('INSERT INTO polls (idUser, title)
 				VALUES (:idUser, :title)');
 	$stmtPolls->bindParam(':idUser', $idUser);
-	$stmtPolls->bindParam(':title', $_POST['pollTitle']);
+	$stmtPolls->bindParam(':title', $pollTitle);
 	$stmtPolls->execute();
 
 	$idPoll = $dbh->lastInsertId();
@@ -35,10 +49,7 @@
 	////////////////////////////////////
 	//don't forget to verify fields...//
 	////////////////////////////////////
-	if((isset($_POST['pollTitle'])) && ($_POST['pollTitle'] != " "))
-		$pollTitle = $_POST['pollTitle'];
-
-	if((isset($_POST['pollQuestion'])) && ($_POST['pollQuestion'] != " "))
+	if((isset($_POST['pollQuestion'])) && (trim($_POST['pollQuestion']) != ""))
 		$pollQuestion = $_POST['pollQuestion'];
 
 	$stmtPollsQuestions = $dbh->prepare('INSERT INTO pollsQuestions (idPoll, question)
