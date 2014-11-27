@@ -2,6 +2,7 @@
 	///////////////////////////
 	//connection to data base//
 	///////////////////////////
+    /*
 	try
 	{
 		$dbh = new PDO('sqlite:polls.db');
@@ -33,18 +34,7 @@
 
 	if(count($result) != 0)
 		die("Poll's name already taken!");
-
-	$stmtPolls = $dbh->prepare('INSERT INTO polls (idUser, title)
-				VALUES (:idUser, :title)');
-	$stmtPolls->bindParam(':idUser', $idUser);
-	$stmtPolls->bindParam(':title', $pollTitle);
-	$stmtPolls->execute();
-
-	$idPoll = $dbh->lastInsertId();
-
-	$originalFileName = "images/originals/$idPoll.jpg";
-
-	move_uploaded_file($_FILES['picture']['tmp_name'], $originalFileName);
+    */
 
 	////////////////////////////////////
 	//don't forget to verify fields...//
