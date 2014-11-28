@@ -119,13 +119,14 @@ class SQLite
 
     //========================================
 
-    public function insertPoll($idUser, $pollTitle)
+    public function insertPoll($idUser, $pollTitle, $sharing)
     {
         try
         {
-            $stmtPolls = $this->dbh->prepare('INSERT INTO polls (idUser, title) VALUES (:idUser, :title)');
+            $stmtPolls = $this->dbh->prepare('INSERT INTO polls (idUser, title, sharing) VALUES (:idUser, :title, :share)');
             $stmtPolls->bindParam(':idUser', $idUser);
             $stmtPolls->bindParam(':title', $pollTitle);
+            $stmtPolls->bindParam(':share', $sharing);
             $stmtPolls->execute();
 
             return $this->dbh->lastInsertId();

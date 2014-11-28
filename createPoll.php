@@ -23,7 +23,10 @@ include ('templates/header.php');
     <fieldset>
         <legend>Poll</legend>
 
-        <p>Insert title: <input id="poll_title" type="text" name="pollTitle" required="required"></p>
+        <p>
+            Insert title: <input id="poll_title" type="text" name="pollTitle" required="required">
+            <input type="checkbox" name="privatePoll" value="private">Private Poll
+        </p>
 
         <p>Insert image: <input type="file" name="picture" ></p>
 
