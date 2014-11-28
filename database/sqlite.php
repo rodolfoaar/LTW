@@ -123,11 +123,11 @@ class SQLite
     {
         try
         {
-            $stmtPolls = $this->dbh->prepare('INSERT INTO polls (idUser, title, sharing) VALUES (:idUser, :title, :share)');
-            $stmtPolls->bindParam(':idUser', $idUser);
-            $stmtPolls->bindParam(':title', $pollTitle);
-            $stmtPolls->bindParam(':share', $sharing);
-            $stmtPolls->execute();
+            $stmt = $this->dbh->prepare('INSERT INTO polls (idUser, title, sharing) VALUES (:idUser, :title, :share)');
+            $stmt->bindParam(':idUser', $idUser);
+            $stmt->bindParam(':title', $pollTitle);
+            $stmt->bindParam(':share', $sharing);
+            $stmt->execute();
 
             return $this->dbh->lastInsertId();
 
@@ -136,6 +136,49 @@ class SQLite
         {
             die($e->getMessage());
         }
+    }
+
+    //========================================
+
+    public function insertQuestion($idPoll, $questionText, $choicesArray)
+    {
+        try
+        {
+            $stmt = $this->dbh->prepare('INSERT INTO pollsQuestions (idPoll, question) VALUES (:idPoll, :question)');
+            $stmt->bindParam(':idPoll', $idPoll);
+            $stmt->bindParam(':question', $questionText);
+            $stmt->execute();
+
+            $questionID = $this->dbh->lastInsertId();
+
+            foreach($choicesArray as $choice)
+            {
+                $this->insertChoice($questionID, $choice);
+            }
+
+        }
+        catch(PDOException $e)
+        {
+            die($e->getMessage());
+        }
+    }
+
+    //========================================
+
+    private function insertChoice($idPollQuestion, $choiceText)
+    {
+        try
+        {
+            $stmt = $this->dbh->prepare('INSERT INTO pollsChoices (idPollQuestion, choice, choiceCount) VALUES (:idPollQuestion, :choice, 0)');
+            $stmt->bindParam(':idPollQuestion', $idPollQuestion);
+            $stmt->bindParam(':choice', $choiceText);
+            $stmt->execute();
+        }
+        catch(PDOException $e)
+        {
+            die($e->getMessage());
+        }
+
     }
 }
 ?>
