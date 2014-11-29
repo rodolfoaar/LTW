@@ -5,14 +5,9 @@ session_start();
 
 require_once 'database/user.php';
 
-$user = new User();
-
 //If user is NOT logged in, redirects the browser to index.php
-if(!$user->isUserLoggedIn())
-{
-    header('Location: index.php');
-    die();
-}
+$user = new User();
+$user->isUserLoggedIn();
 
 include ('templates/header.php');
 

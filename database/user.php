@@ -39,13 +39,11 @@ class User {
 
     public function isUserLoggedIn()
     {
-        if($_SESSION['status'] != 'authorized')
+        if(!isset($_SESSION['status']) || ($_SESSION['status'] != 'authorized'))
         {
-            return false;
+            header('Location: index.php');
+            die();
         }
-
-        return true;
-
     }
 
     //========================================
