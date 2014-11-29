@@ -143,8 +143,7 @@ class Validation
 function cleanInput($formField)
 {
     $data = trim($formField);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
+    $data = preg_replace('/[^\w\d\s\.!,\?]/', '', $data);
     return $data;
 }
 
