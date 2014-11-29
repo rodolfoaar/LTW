@@ -1,51 +1,39 @@
 <?php
-  ///////////////////////////
-  //connection to data base//
-  ///////////////////////////
-  try
-  {
-    $dbh = new PDO('sqlite:polls.db');
-    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  }
-  catch (PDOException $e)
-  {
-    die($e->getMessage());
-  }
-  /////////////////
-  //get all polls//
-  /////////////////
-  try
-    {
-      $stmtPoll= $dbh->prepare('SELECT * FROM polls');
-      $stmtPoll->execute();
-      $resultPoll = $stmtPoll->fetchALL();
-    }
-    catch (PDOException $e)
-    {
-      die($e->getMessage());
-    }
+
+session_set_cookie_params(0);
+session_start();
+
+require_once 'database/user.php';
+require_once 'database/sqlite.php';
+
+//If user is NOT logged in, redirects the browser to index.php
+$user = new User();
+$user->isUserLoggedIn();
+
+$sqlite = new SQLite();
+$allPolls = $sqlite->getAllPolls();
+
+include ('templates/header.php');
 
 ?>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-    <meta charset="utf-8">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  </head>
-  <body>
-    <form action="answerPoll.php" method="POST">
-      <select id="polls" name="pollsTitles">
-        <?php
-          foreach ($resultPoll as $poll)
-          {
-            ?><option><?=$poll['title']?></option><?php
-          }
-        ?>
-      </select>
-      <input type="submit" value="Submit">
-    </form>
-    </body>
-</html>
+<table>
+    <tr>
+        <th>idPoll</th><th>idUser</th><th>Title</th><th>Sharing</th>
+    </tr>
+
+    <?php foreach($allPolls as $poll)
+    {?>
+    <tr>
+        <td><?=$poll['idPoll']?></td>
+        <td><?=$poll['idUser']?></td>
+        <td><?=$poll['title']?></td>
+        <td><?=$poll['sharing']?></td>
+        <td><a href="answerPoll.php?id=<?=$poll['idPoll']?>">Link</a></td>
+    </tr>
+    <?php } ?>
+
+</table>
+
+<?php include ('templates/footer.php'); ?>
+

@@ -182,5 +182,110 @@ class SQLite
         }
 
     }
+
+    //========================================
+
+    public function getAllPolls()
+    {
+        $resultPoll = null;
+
+        try
+        {
+            $stmtPoll = $this->dbh->prepare('SELECT * FROM polls');
+            $stmtPoll->execute();
+            $resultPoll = $stmtPoll->fetchAll();
+
+            return $resultPoll;
+
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+
+        return $resultPoll;
+    }
+
+    //========================================
+
+    public function getPoll($idPoll)
+    {
+        $resultPoll = null;
+
+        try
+        {
+            $stmtPoll= $this->dbh->prepare("SELECT * FROM polls WHERE idPoll = :id");
+            $stmtPoll->bindParam(':id', $idPoll);
+            $stmtPoll->execute();
+            $resultPoll = $stmtPoll->fetch();
+
+            return $resultPoll;
+
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+
+        return $resultPoll;
+    }
+
+    //========================================
+
+    public function getPollQuestions($idPoll)
+    {
+        /////////////////////
+        //get poll question//
+        /////////////////////
+        try
+        {
+            $stmtQuestions = $this->dbh->prepare("SELECT * FROM pollsQuestions WHERE idPoll = :pollId");
+            $stmtQuestions->bindParam(':pollId', $idPoll);
+            $stmtQuestions->execute();
+            $resultQuestions = $stmtQuestions->fetchALL();
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+
+        /////////////////////////////
+        //get poll question choices//
+        /////////////////////////////
+        $pollArray = null;
+
+        foreach($resultQuestions as $question)
+        {
+            $questionArray[] = $question;
+
+            /////////////////////////////
+            //get poll question choices//
+            /////////////////////////////
+            try
+            {
+                $stmtChoices = $this->dbh->prepare("SELECT * FROM pollsChoices WHERE idPollQuestion = :idQuestion");
+                $stmtChoices->bindParam(':idQuestion', $question['idPollQuestion']);
+                $stmtChoices->execute();
+                $resultChoices = $stmtChoices->fetchAll();
+
+                foreach($resultChoices as $choice)
+                {
+                    $questionArray[] = $choice;
+                }
+
+                $pollArray[] = $questionArray;
+                unset($questionArray);
+            }
+            catch (PDOException $e)
+            {
+                die($e->getMessage());
+            }
+
+        }
+
+        return $pollArray;
+
+    }
+
 }
 ?>
