@@ -80,5 +80,17 @@ class Poll
         }
     }
 
+    //========================================
+
+    public function submitPoll($userVotes)
+    {
+        $sqlite = new SQLite();
+
+        foreach($userVotes as $vote)
+        {
+            $sqlite->insertVote($vote);
+        }
+    }
+
 
 }

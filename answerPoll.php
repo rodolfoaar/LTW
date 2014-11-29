@@ -24,9 +24,8 @@ include ('templates/header.php');
 ?>
 
 
-<form action="xxx.php" method="POST">
+<form action="save_vote.php" method="POST">
     <h1><?= $poll['title']?></h1>
-    <input type="text" name="pollId" value="<?= $poll['idPoll']?>" hidden>
     <img src="<?= 'images/originals/'.$poll['idPoll'].'.jpg'?>" alt="poll image">
 
     <ul>
@@ -52,7 +51,7 @@ include ('templates/header.php');
                 else
                 {?>
                     <li>
-                        <input type="radio" name="questionId_<?= $questionId?>" value="<?= $questionElem['choice']?>" >
+                        <input type="radio" name="questionId_<?= $questionId?>" value="<?= $questionElem['idPollChoice']?>" >
                         <?php echo $questionElem['choice']; ?>
                     </li>
                     <?php

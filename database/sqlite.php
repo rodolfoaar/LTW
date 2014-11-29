@@ -214,7 +214,7 @@ class SQLite
 
         try
         {
-            $stmtPoll= $this->dbh->prepare("SELECT * FROM polls WHERE idPoll = :id");
+            $stmtPoll= $this->dbh->prepare('SELECT * FROM polls WHERE idPoll = :id');
             $stmtPoll->bindParam(':id', $idPoll);
             $stmtPoll->execute();
             $resultPoll = $stmtPoll->fetch();
@@ -239,7 +239,7 @@ class SQLite
         /////////////////////
         try
         {
-            $stmtQuestions = $this->dbh->prepare("SELECT * FROM pollsQuestions WHERE idPoll = :pollId");
+            $stmtQuestions = $this->dbh->prepare('SELECT * FROM pollsQuestions WHERE idPoll = :pollId');
             $stmtQuestions->bindParam(':pollId', $idPoll);
             $stmtQuestions->execute();
             $resultQuestions = $stmtQuestions->fetchALL();
@@ -263,7 +263,7 @@ class SQLite
             /////////////////////////////
             try
             {
-                $stmtChoices = $this->dbh->prepare("SELECT * FROM pollsChoices WHERE idPollQuestion = :idQuestion");
+                $stmtChoices = $this->dbh->prepare('SELECT * FROM pollsChoices WHERE idPollQuestion = :idQuestion');
                 $stmtChoices->bindParam(':idQuestion', $question['idPollQuestion']);
                 $stmtChoices->execute();
                 $resultChoices = $stmtChoices->fetchAll();
@@ -286,6 +286,43 @@ class SQLite
         return $pollArray;
 
     }
+
+    //========================================
+
+    public function insertVote($idPollChoice)
+    {
+        //Get choiceCount
+        try
+        {
+            $stmt = $this->dbh->prepare('SELECT * FROM pollsChoices WHERE idPollChoice = :choiceId');
+            $stmt->bindParam(':choiceId', $idPollChoice);
+            $stmt->execute();
+            $choice = $stmt->fetch();
+
+            $voteCount = $choice['choiceCount'];
+
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+
+        //Increment choiceCount
+        $voteCount = $voteCount + 1;
+
+        try
+        {
+            $stmt = $this->dbh->prepare('UPDATE pollsChoices SET choiceCount = :addVote WHERE idPollChoice = :choiceId');
+            $stmt->bindParam(':addVote', $voteCount);
+            $stmt->bindParam(':choiceId', $idPollChoice);
+            $stmt->execute();
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+    }
+
 
 }
 ?>
