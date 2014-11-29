@@ -110,6 +110,8 @@ class SQLite
             $stmt->bindParam(':email', $userInfo['email']);
             $stmt->execute();
 
+            return $this->dbh->lastInsertId();
+
         }
         catch (PDOException $e)
         {

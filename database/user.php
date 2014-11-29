@@ -61,9 +61,7 @@ class User {
             die();
         }
 
-        $sqlite->addUser($userInfo);
-
-        $_SESSION['user'] = $userInfo['username'];
+        $_SESSION['userId'] = $sqlite->addUser($userInfo);
         $_SESSION['status'] =  'authorized';
         header('Location: view_user.php');
         die();

@@ -45,6 +45,7 @@
 		die($e->getMessage());
 	}
 
+
 	$idPollQuestion = $resultQuestions[0]['idPollQuestion'];
 	$pollQuestion = $resultQuestions[0]['question'];
 
