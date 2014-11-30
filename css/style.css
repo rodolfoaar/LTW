@@ -78,7 +78,6 @@ section
 {
     margin: auto;
     width: 800px;
-    background-color: #f7f7f7;
 }
 
 section h2
@@ -91,6 +90,11 @@ section h2
 form
 {
     font-family: sans-serif;
+}
+
+input
+{
+    border: solid #fcae21;
 }
 
 #submit_form
@@ -110,4 +114,44 @@ form
 .error
 {
     color : red;
+}
+
+table
+{
+    margin: 20px auto;
+    color: #fff;
+    font-family: sans-serif;
+    font-weight: lighter;
+}
+
+th
+{
+    text-align: center;
+    padding: 10px;
+    background-color: #444;
+    border: solid #fcae21;
+}
+
+td
+{
+    text-align: center;
+    padding: 10px;
+    background-color: #3f8dbf;
+    border: solid #fcae21;
+}
+
+table a
+{
+    text-decoration: none;
+    padding: 5px;
+    color: #fff;
+    background-color: #444;
+    border-radius: 10px;
+}
+
+table a:hover
+{
+    color: #fcae21;
+    background-color: #3f8dbf;
+    border-radius: 10px;
 }

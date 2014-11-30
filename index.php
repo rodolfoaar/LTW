@@ -3,149 +3,32 @@
 session_set_cookie_params(0);
 session_start();
 
-require_once 'database/user.php';
-include 'database/validation.php';
+require_once 'database/sqlite.php';
 
-if($_SESSION['status'] === 'authorized')
-{
-    header('Location: view_user.php');
-    die();
-}
-else
-{
-    $_SESSION['status'] = '';
-}
+$sqlite = new SQLite();
+$allPolls = $sqlite->getAllPolls();
 
-// ===============
+include ('templates/header.php'); ?>
 
-if (!isset($_SESSION['signUp']))
-    $_SESSION['signUp'] = '';
+<section id="polls">
+    <table cellspacing="0">
+        <tr>
+            <th>idPoll</th><th>idUser</th><th>Title</th><th>Sharing</th><th>Vote</th>
+        </tr>
 
-if (!isset($_SESSION['formSignUp']['username']))
-    $_SESSION['formSignUp']['username'] = '';
-if (!isset($_SESSION['formSignUp']['email']))
-    $_SESSION['formSignUp']['email'] = '';
+        <?php foreach($allPolls as $poll)
+        {?>
+            <tr>
+                <td><?=$poll['idPoll']?></td>
+                <td><?=$poll['idUser']?></td>
+                <td><?=$poll['title']?></td>
+                <td><?=$poll['sharing']?></td>
+                <td><a href="answerPoll.php?id=<?=$poll['idPoll']?>">Vote</a></td>
+            </tr>
+        <?php } ?>
 
-if (!isset($_SESSION['errorSignUp']['username']))
-    $_SESSION['errorSignUp']['username'] = '';
-if (!isset($_SESSION['errorSignUp']['password']))
-    $_SESSION['errorSignUp']['password'] = '';
-if (!isset($_SESSION['errorSignUp']['confirmPassword']))
-    $_SESSION['errorSignUp']['confirmPassword'] = '';
-if (!isset($_SESSION['errorSignUp']['age']))
-    $_SESSION['errorSignUp']['age'] = '';
-if (!isset($_SESSION['errorSignUp']['gender']))
-    $_SESSION['errorSignUp']['gender'] = '';
-if (!isset($_SESSION['errorSignUp']['email']))
-    $_SESSION['errorSignUp']['email'] = '';
-
-// ===============
-
-if (!isset($_SESSION['signIn']))
-    $_SESSION['signIn'] = '';
-
-if (!isset($_SESSION['formSignIn']['email']))
-    $_SESSION['formSignIn']['username'] = '';
-
-if (!isset($_SESSION['errorSignIn']['username']))
-    $_SESSION['errorSignIn']['username'] = '';
-if (!isset($_SESSION['errorSignIn']['password']))
-    $_SESSION['errorSignIn']['password'] = '';
-
-include ('templates/header.php');
-
-?>
-
-<!-- SIGN UP ================================================ -->
-
-<section id="signUp">
-    <form name="signUp" action='sign_up.php' method='POST' enctype="multipart/form-data">
-        <fieldset>
-            <legend>Sign up</legend>
-
-            <h3 class="error"><?php echo getFieldVal($_SESSION['signUp']) ?></h3>
-
-            <label> Username:
-                <input type="text" name="username" value ="<?php echo getFieldVal($_SESSION['formSignUp']['username']); ?>" required="required">
-                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['username']); ?></span>
-            </label>
-
-            <br><br>
-
-            <label> Password:
-                <input type="password" name="password" required="required">
-                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['password']); ?></span>
-            </label>
-
-            <br><br>
-
-            <label> Confirm password:
-                <input type="password" name="confirmPassword" required="required">
-                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['confirmPassword']); ?></span>
-            </label>
-
-            <br><br>
-
-            <label> Age:
-                <input type="number" name="age" min="1" max="99" value="<?php echo getFieldVal($_SESSION['formSignUp']['age']); ?>" step="1">
-                <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['age']); ?></span>
-            </label>
-
-            <br><br>
-
-            Gender:
-            <br>
-            <label>Male
-                <input type="radio" name="gender" value="male">
-            </label>
-
-            <label>Female
-                <input type="radio" name="gender" value="female">
-            </label>
-            <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['gender']); ?></span>
-
-            <br><br>
-
-            <label> E-mail:
-                <input type="email" name="email" value ="<?php echo getFieldVal($_SESSION['formSignUp']['email']); ?>" required="required">
-                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['email']); ?></span>
-            </label>
-
-            <p class="error">* - required field</p>
-
-            <input id="submit_form" type="submit" value="Submit">
-
-        </fieldset>
-    </form>
+    </table>
 </section>
 
-
-<!-- SIGN IN ================================================ -->
-<section id="signIn">
-    <form id="signIn" action="sign_in.php" method="post">
-        <fieldset>
-            <legend>Sign in</legend>
-
-            <h3 class="error"><?php echo getFieldVal($_SESSION['signIn']) ?></h3>
-
-            <label class="user">Username:
-                <input type="text" name="username_sign_in" value ="<?php echo getFieldVal($_SESSION['formSignIn']['username']); ?>" required="required">
-                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignIn']['username']); ?></span>
-            </label>
-
-            <br><br>
-
-            <label class="pass">Password:
-                <input type="password" name="password_sign_in" required="required">
-                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignIn']['password']); ?></span>
-            </label>
-
-            <p class="error">* - required field</p>
-
-            <input id="submit_form" type="submit" value="Submit">
-
-        </fieldset>
-    </form>
-</section>
 
 <?php include ('templates/footer.php'); ?>
