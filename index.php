@@ -11,6 +11,46 @@ if($_SESSION['status'] === 'authorized')
     header('Location: view_user.php');
     die();
 }
+else
+{
+    $_SESSION['status'] = '';
+}
+
+// ===============
+
+if (!isset($_SESSION['signUp']))
+    $_SESSION['signUp'] = '';
+
+if (!isset($_SESSION['formSignUp']['username']))
+    $_SESSION['formSignUp']['username'] = '';
+if (!isset($_SESSION['formSignUp']['email']))
+    $_SESSION['formSignUp']['email'] = '';
+
+if (!isset($_SESSION['errorSignUp']['username']))
+    $_SESSION['errorSignUp']['username'] = '';
+if (!isset($_SESSION['errorSignUp']['password']))
+    $_SESSION['errorSignUp']['password'] = '';
+if (!isset($_SESSION['errorSignUp']['confirmPassword']))
+    $_SESSION['errorSignUp']['confirmPassword'] = '';
+if (!isset($_SESSION['errorSignUp']['age']))
+    $_SESSION['errorSignUp']['age'] = '';
+if (!isset($_SESSION['errorSignUp']['gender']))
+    $_SESSION['errorSignUp']['gender'] = '';
+if (!isset($_SESSION['errorSignUp']['email']))
+    $_SESSION['errorSignUp']['email'] = '';
+
+// ===============
+
+if (!isset($_SESSION['signIn']))
+    $_SESSION['signIn'] = '';
+
+if (!isset($_SESSION['formSignIn']['email']))
+    $_SESSION['formSignIn']['username'] = '';
+
+if (!isset($_SESSION['errorSignIn']['username']))
+    $_SESSION['errorSignIn']['username'] = '';
+if (!isset($_SESSION['errorSignIn']['password']))
+    $_SESSION['errorSignIn']['password'] = '';
 
 include ('templates/header.php');
 
@@ -46,8 +86,8 @@ include ('templates/header.php');
         <br><br>
 
         <label> Age:
-            <input type="number" name="age" value="18" min="18" max="100" step="1">
-            <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['age']); ?></span>
+            <input type="number" name="age" min="1" value="<?php echo getFieldVal($_SESSION['formSignUp']['age']); ?>" step="1">
+            <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['age']); ?></span>
         </label>
 
         <br><br>
@@ -60,7 +100,7 @@ include ('templates/header.php');
         <label>Female:
             <input type="radio" name="gender" value="female">
         </label>
-        <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['gender']); ?></span>
+        <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['gender']); ?></span>
 
         <br><br>
 
@@ -68,14 +108,6 @@ include ('templates/header.php');
             <input type="email" name="email" value ="<?php echo getFieldVal($_SESSION['formSignUp']['email']); ?>" required="required">
             <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['email']); ?></span>
         </label>
-
-        <!--
-        Telephone: <br>
-        <input type='tel' name='telephone' required="required"> <br>
-
-        Choose image for avatar: <br>
-        <input type="file" name="userAvatar" required="required"> <br>
-        !-->
 
         <p class="error">* - required field</p>
 
