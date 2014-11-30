@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>LTW Project</title>
+		<title>Online Polls</title>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="css/style.css">
 
@@ -10,11 +10,22 @@
         <script src="js/create_poll.js"></script>
 
 	</head>
-
 	<body>
+        <header>
 
-	<div id="header">
-		<h1>Welcome to the LTW web application where users can create, share, and manage polls!</h1>
-		<h2>=== FEUP 2014 ===</h2>
-		<img id="feupLogo" src="images/Logo-FEUP.gif" alt="FEUP logo" width="232" height="200">
-	</div>
+            <h1>Online Polls</h1>
+            <h2>Welcome to the best online polls, where users can create, share, and manage polls!</h2>
+
+            <nav>
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Account</a></li>
+                </ul>
+            </nav>
+
+        </header>
+
+
+
+

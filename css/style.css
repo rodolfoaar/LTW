@@ -1,26 +1,98 @@
-html
+*
 {
-  background-color: #ddddff;
+    margin-top: 0;
 }
 
 body
 {
-  width: 800px;
-  margin: 0px auto;
-  background-color: #ffffff;
+    margin: 0 auto;
+    padding: 0;
+    background: #ccc;
+}
+
+header
+{
+    background-color: #005f5f;
+    color: #fff;
+    text-align: center;
+}
+
+footer
+{
+    background-color: #444;
+}
+
+footer p
+{
+    color: #fff;
+    font-family: sans-serif;
+    padding: 10px 90px;
+    margin: auto;
+}
+
+nav ul
+{
+    list-style: none;
+    background-color: #444;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav li
+{
+    font-family: sans-serif;
+    width: 120px;
+    line-height: 40px;
+    font-size: 1.4em;
+    display: inline-block;
+    margin-top: 12.5px;
+    margin-bottom: 12.5px;
+}
+
+nav a
+{
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+nav a:hover
+{
+    background-color: #005f5f;
+    border-radius: 25px;
+}
+
+header h1
+{
+    font-size: 48px;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-bottom: 0px;
+}
+
+header h2
+{
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+}
+
+section
+{
+    width: 800px;
+    margin: 0px auto;
+    background-color: #f7f7f7;
+}
+
+section h2
+{
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .error
 {
     color : red;
-}
-
-#signUp
-{
-
-}
-
-#signIn
-{
-
 }

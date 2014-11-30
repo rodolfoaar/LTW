@@ -58,93 +58,92 @@ include ('templates/header.php');
 
 <!-- SIGN UP ================================================ -->
 
-<form name="signUp" action='sign_up.php' method='POST' enctype="multipart/form-data">
-    <fieldset>
-        <legend>Sign up</legend>
+<section id="signUp">
+    <form name="signUp" action='sign_up.php' method='POST' enctype="multipart/form-data">
+        <fieldset>
+            <legend>Sign up</legend>
 
-        <h3 class="error"><?php echo getFieldVal($_SESSION['signUp']) ?></h3>
+            <h3 class="error"><?php echo getFieldVal($_SESSION['signUp']) ?></h3>
 
-        <label> Username:
-            <input type="text" name="username" value ="<?php echo getFieldVal($_SESSION['formSignUp']['username']); ?>" required="required">
-            <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['username']); ?></span>
-        </label>
+            <label> Username:
+                <input type="text" name="username" value ="<?php echo getFieldVal($_SESSION['formSignUp']['username']); ?>" required="required">
+                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['username']); ?></span>
+            </label>
 
-        <br><br>
+            <br><br>
 
-        <label> Password:
-            <input type="password" name="password" required="required">
-            <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['password']); ?></span>
-        </label>
+            <label> Password:
+                <input type="password" name="password" required="required">
+                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['password']); ?></span>
+            </label>
 
-        <br><br>
+            <br><br>
 
-        <label> Confirm password:
-            <input type="password" name="confirmPassword" required="required">
-            <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['confirmPassword']); ?></span>
-        </label>
+            <label> Confirm password:
+                <input type="password" name="confirmPassword" required="required">
+                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['confirmPassword']); ?></span>
+            </label>
 
-        <br><br>
+            <br><br>
 
-        <label> Age:
-            <input type="number" name="age" min="1" value="<?php echo getFieldVal($_SESSION['formSignUp']['age']); ?>" step="1">
-            <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['age']); ?></span>
-        </label>
+            <label> Age:
+                <input type="number" name="age" min="1" value="<?php echo getFieldVal($_SESSION['formSignUp']['age']); ?>" step="1">
+                <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['age']); ?></span>
+            </label>
 
-        <br><br>
+            <br><br>
 
-        Gender:
-        <label>Male:
-            <input type="radio" name="gender" value="male">
-        </label>
+            Gender:
+            <label>Male:
+                <input type="radio" name="gender" value="male">
+            </label>
 
-        <label>Female:
-            <input type="radio" name="gender" value="female">
-        </label>
-        <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['gender']); ?></span>
+            <label>Female:
+                <input type="radio" name="gender" value="female">
+            </label>
+            <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['gender']); ?></span>
 
-        <br><br>
+            <br><br>
 
-        <label> E-mail:
-            <input type="email" name="email" value ="<?php echo getFieldVal($_SESSION['formSignUp']['email']); ?>" required="required">
-            <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['email']); ?></span>
-        </label>
+            <label> E-mail:
+                <input type="email" name="email" value ="<?php echo getFieldVal($_SESSION['formSignUp']['email']); ?>" required="required">
+                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['email']); ?></span>
+            </label>
 
-        <p class="error">* - required field</p>
+            <p class="error">* - required field</p>
 
-        <input type="image" src="images/submit-icon.png"	 alt="Submit" align="right" width="64" height="64">
-    </fieldset>
-</form>
+            <input type="image" src="images/submit-icon.png"	 alt="Submit" align="right" width="64" height="64">
+        </fieldset>
+    </form>
+</section>
 
 
 <!-- SIGN IN ================================================ -->
+<section id="signIn">
+    <form id="signIn" action="sign_in.php" method="post">
+        <fieldset>
+            <legend>Sign in</legend>
 
-<form id="signIn" action="sign_in.php" method="post">
-    <fieldset>
-        <legend>Sign in</legend>
+            <h3 class="error"><?php echo getFieldVal($_SESSION['signIn']) ?></h3>
 
-        <h3 class="error"><?php echo getFieldVal($_SESSION['signIn']) ?></h3>
+            <label class="user">Username:
+                <input type="text" name="username_sign_in" value ="<?php echo getFieldVal($_SESSION['formSignIn']['username']); ?>" required="required">
+                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignIn']['username']); ?></span>
+            </label>
 
-        <label class="user">Username:
-            <input type="text" name="username_sign_in" value ="<?php echo getFieldVal($_SESSION['formSignIn']['username']); ?>" required="required">
-            <span class="error">* <?php echo getFieldVal($_SESSION['errorSignIn']['username']); ?></span>
-        </label>
+            <br><br>
 
-        <br><br>
+            <label class="pass">Password:
+                <input type="password" name="password_sign_in" required="required">
+                <span class="error">* <?php echo getFieldVal($_SESSION['errorSignIn']['password']); ?></span>
+            </label>
 
-        <label class="pass">Password:
-            <input type="password" name="password_sign_in" required="required">
-            <span class="error">* <?php echo getFieldVal($_SESSION['errorSignIn']['password']); ?></span>
-        </label>
+            <p class="error">* - required field</p>
 
-        <p class="error">* - required field</p>
+            <input type="image" src="images/submit-icon.png" alt="Submit" align="right" width="64" height="64">
 
-        <input type="image" src="images/submit-icon.png" alt="Submit" align="right" width="64" height="64">
+        </fieldset>
+    </form>
+</section>
 
-    </fieldset>
-</form>
-
-<?
-
-include ('templates/footer.php');
-
-?>
+<?php include ('templates/footer.php'); ?>

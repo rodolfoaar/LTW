@@ -13,8 +13,13 @@ include ('templates/header.php');
 
 ?>
 
-    <a id="create_poll" href="createPoll.php">Create Poll</a>
-    <a id="show_all_polls" href="showPolls.php">Show Polls</a>
-    <a id="user_log_out" href="log_out.php">Log Out</a>
+<section id="polls">
+    <h2>Polls</h2>
+    <article>
+        <h3><a href="#">Poll Title</a></h3>
+        <img src="" alt="Poll image">
+        <footer><span class="author">Poll Author</span></footer>
+    </article>
+</section>
 
 <?php include ('templates/footer.php'); ?>
