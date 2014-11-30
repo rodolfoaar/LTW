@@ -87,18 +87,19 @@ include ('templates/header.php');
             <br><br>
 
             <label> Age:
-                <input type="number" name="age" min="1" value="<?php echo getFieldVal($_SESSION['formSignUp']['age']); ?>" step="1">
+                <input type="number" name="age" min="1" max="99" value="<?php echo getFieldVal($_SESSION['formSignUp']['age']); ?>" step="1">
                 <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['age']); ?></span>
             </label>
 
             <br><br>
 
             Gender:
-            <label>Male:
+            <br>
+            <label>Male
                 <input type="radio" name="gender" value="male">
             </label>
 
-            <label>Female:
+            <label>Female
                 <input type="radio" name="gender" value="female">
             </label>
             <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['gender']); ?></span>
@@ -112,7 +113,8 @@ include ('templates/header.php');
 
             <p class="error">* - required field</p>
 
-            <input type="image" src="images/submit-icon.png"	 alt="Submit" align="right" width="64" height="64">
+            <input id="submit_form" type="submit" value="Submit">
+
         </fieldset>
     </form>
 </section>
@@ -140,7 +142,7 @@ include ('templates/header.php');
 
             <p class="error">* - required field</p>
 
-            <input type="image" src="images/submit-icon.png" alt="Submit" align="right" width="64" height="64">
+            <input id="submit_form" type="submit" value="Submit">
 
         </fieldset>
     </form>

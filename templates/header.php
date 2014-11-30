@@ -12,7 +12,6 @@
 	</head>
 	<body>
         <header>
-
             <h1>Online Polls</h1>
             <h2>Welcome to the best online polls, where users can create, share, and manage polls!</h2>
 
@@ -23,9 +22,7 @@
                     <li><a href="#">Account</a></li>
                 </ul>
             </nav>
-
         </header>
-
 
 
 

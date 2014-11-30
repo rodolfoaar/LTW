@@ -1,19 +1,14 @@
-*
-{
-    margin-top: 0;
-}
-
 body
 {
-    margin: 0 auto;
-    padding: 0;
-    background: #ccc;
+    background-color: #ccc;
+    width: 800px;
+    margin: auto;
 }
 
 header
 {
-    background-color: #005f5f;
-    color: #fff;
+    background-color: #3f8dbf;
+    color: #fcae21;
     text-align: center;
 }
 
@@ -25,9 +20,10 @@ footer
 footer p
 {
     color: #fff;
+    font-size: 15px;
     font-family: sans-serif;
-    padding: 10px 90px;
-    margin: auto;
+    padding: 10px;
+    margin: 0;
 }
 
 nav ul
@@ -43,7 +39,6 @@ nav li
 {
     font-family: sans-serif;
     width: 120px;
-    line-height: 40px;
     font-size: 1.4em;
     display: inline-block;
     margin-top: 12.5px;
@@ -59,29 +54,30 @@ nav a
 
 nav a:hover
 {
-    background-color: #005f5f;
+    color: #fcae21;
+    background-color: #3f8dbf;
     border-radius: 25px;
 }
 
 header h1
 {
-    font-size: 48px;
+    font-size: 40px;
     font-weight: bold;
     font-family: sans-serif;
-    margin-bottom: 0px;
+    margin: 0;
 }
 
 header h2
 {
-    font-size: 20px;
+    font-size: 15px;
     font-family: sans-serif;
     margin-bottom: 10px;
 }
 
 section
 {
+    margin: auto;
     width: 800px;
-    margin: 0px auto;
     background-color: #f7f7f7;
 }
 
@@ -90,6 +86,25 @@ section h2
     font-family: sans-serif;
     font-size: 18px;
     font-weight: bold;
+}
+
+form
+{
+    font-family: sans-serif;
+}
+
+#submit_form
+{
+    color: #fff;
+    background-color: #444;
+    border-radius: 25px;
+}
+
+#submit_form:hover
+{
+    color: #fcae21;
+    background-color: #3f8dbf;
+    border-radius: 25px;
 }
 
 .error
