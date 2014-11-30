@@ -37,6 +37,8 @@ class Validation
 
         $this->submit_form = true;
         $_SESSION['formSignUp']['username'] = $userInfo['username'];
+        $_SESSION['formSignUp']['age'] = $userInfo['age'];
+        $_SESSION['formSignUp']['gender'] = $userInfo['gender'];
         $_SESSION['formSignUp']['email'] = $userInfo['email'];
 
         $data = $this->validateField('username', $userInfo['username'], 'errorSignUp');
@@ -55,7 +57,7 @@ class Validation
         $data = $this->validateAge($userInfo['age'], 'errorSignUp');
         $info_sign_up['age'] = $data;
 
-        $data = $this->validateField('gender', $userInfo['gender'], 'errorSignUp');
+        $data = cleanInput($userInfo['gender']);
         $info_sign_up['gender'] = $data;
 
         $data = $this->validateEmail($userInfo['email'], 'errorSignUp');
@@ -99,17 +101,17 @@ class Validation
     {
         $data = cleanInput($fieldVal);
 
-        if (empty($fieldVal)) {
-            $_SESSION[$arrayError]['age'] = "Age is required.";
-            $this->submit_form = false;
-            return false;
-        } else {
-
+        if(!empty($data))
+        {
             if (!filter_var($data, FILTER_VALIDATE_INT)) {
                 $_SESSION[$arrayError]['age'] = "Invalid age.";
                 $this->submit_form = false;
                 return false;
             }
+        }
+        else
+        {
+            $data = 0;
         }
 
         return $data;
@@ -119,14 +121,16 @@ class Validation
 
     public function validateEmail($fieldVal, $arrayError)
     {
-        $data = cleanInput($fieldVal);
+        $data = $fieldVal;
 
-        if (empty($fieldVal)) {
+        if (empty($fieldVal))
+        {
             $_SESSION[$arrayError]['email'] = "email is required.";
             $this->submit_form = false;
             return false;
-        } else {
-
+        }
+        else
+        {
             if (!filter_var($data, FILTER_VALIDATE_EMAIL)) {
                 $_SESSION[$arrayError]['email'] = "Invalid email.";
                 $this->submit_form = false;
