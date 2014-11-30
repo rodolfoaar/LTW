@@ -4,12 +4,9 @@ session_set_cookie_params(0);
 session_start();
 
 require_once 'database/user.php';
-
 include 'database/validation.php';
 
-//If user is already logged in, redirects the browser to index.php
-$user = new User();
-if($user->isUserLoggedIn())
+if($_SESSION['status'] === 'authorized')
 {
     header('Location: view_user.php');
     die();

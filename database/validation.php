@@ -47,8 +47,7 @@ class Validation
 
         $confPass = $this->validateField('confirmPassword', $userInfo['confirmPassword'], 'errorSignUp');
 
-        if($data !== $confPass)
-        {
+        if ($data !== $confPass) {
             $this->submit_form = false;
             $_SESSION['errorSignUp']['confirmPassword'] = "Doesn't match password.";
         }
@@ -76,16 +75,16 @@ class Validation
 
     public function validateField($field, $fieldVal, $arrayError)
     {
-        $data = $this->cleanInput($fieldVal);
+        $data = cleanInput($fieldVal);
 
         if (empty($fieldVal)) {
-            $_SESSION[$arrayError][$field] = $field." is required.";
+            $_SESSION[$arrayError][$field] = $field . " is required.";
             $this->submit_form = false;
             return false;
         } else {
 
             if (!isset($data) || $data === '') {
-                $_SESSION[$arrayError][$field] = "Invalid ".$field;
+                $_SESSION[$arrayError][$field] = "Invalid " . $field;
                 $this->submit_form = false;
                 return false;
             }
@@ -98,7 +97,7 @@ class Validation
 
     public function validateAge($fieldVal, $arrayError)
     {
-        $data = $this->cleanInput($fieldVal);
+        $data = cleanInput($fieldVal);
 
         if (empty($fieldVal)) {
             $_SESSION[$arrayError]['age'] = "Age is required.";
@@ -120,7 +119,7 @@ class Validation
 
     public function validateEmail($fieldVal, $arrayError)
     {
-        $data = $this->cleanInput($fieldVal);
+        $data = cleanInput($fieldVal);
 
         if (empty($fieldVal)) {
             $_SESSION[$arrayError]['email'] = "email is required.";
@@ -137,16 +136,15 @@ class Validation
 
         return $data;
     }
+}
 
 //========================================
 
-    public function cleanInput($formField)
-    {
-        $data = trim($formField);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+function cleanInput($formField)
+{
+    $data = trim($formField);
+    $data = preg_replace('/[^\w\d\s\.!,\?]/', '', $data);
+    return $data;
 }
 
 //========================================

@@ -5,22 +5,16 @@ session_start();
 
 require_once 'database/user.php';
 
-$user = new User();
-
 //If user is NOT logged in, redirects the browser to index.php
-if(!$user->isUserLoggedIn())
-{
-    header('Location: index.php');
-    die();
-}
+$user = new User();
+$user->isUserLoggedIn();
 
 include ('templates/header.php');
 
-include ('createPoll.php');
-
 ?>
+
+    <a id="create_poll" href="createPoll.php">Create Poll</a>
+    <a id="show_all_polls" href="showPolls.php">Show Polls</a>
     <a id="user_log_out" href="log_out.php">Log Out</a>
-<?php
 
-include ('templates/footer.php');
-?>
+<?php include ('templates/footer.php'); ?>

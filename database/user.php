@@ -13,7 +13,7 @@ class User {
 
         if($ensure_credentials)
         {
-            $_SESSION['user'] = $un;
+            $_SESSION['userId'] = $sqlite->getUserID($un);
             $_SESSION['status'] =  'authorized';
             header('Location: view_user.php');
             die();
@@ -39,13 +39,11 @@ class User {
 
     public function isUserLoggedIn()
     {
-        if($_SESSION['status'] != 'authorized')
+        if(!isset($_SESSION['status']) || ($_SESSION['status'] != 'authorized'))
         {
-            return false;
+            header('Location: index.php');
+            die();
         }
-
-        return true;
-
     }
 
     //========================================
@@ -61,9 +59,7 @@ class User {
             die();
         }
 
-        $sqlite->addUser($userInfo);
-
-        $_SESSION['user'] = $userInfo['username'];
+        $_SESSION['userId'] = $sqlite->addUser($userInfo);
         $_SESSION['status'] =  'authorized';
         header('Location: view_user.php');
         die();

@@ -1,89 +1,70 @@
 <?php
-	///////////////////////////
-	//connection to data base//
-	///////////////////////////
-	try
-	{
-		$dbh = new PDO('sqlite:polls.db');
-		$dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
-		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch (PDOException $e)
-	{
-		die($e->getMessage());
-	}
 
-	$poolTitle = $_POST['pollsTitles'];
+session_set_cookie_params(0);
+session_start();
 
-	/////////////////////
-	//get poll selected//
-	/////////////////////
-	try
-	{
-		$stmtPoll= $dbh->prepare("SELECT * FROM polls WHERE title = '$poolTitle'");
-		$stmtPoll->execute();
-		$resultPoll = $stmtPoll->fetchALL();
-	}
-	catch (PDOException $e)
-	{
-		die($e->getMessage());
-	}
+require_once 'database/user.php';
+require_once 'database/sqlite.php';
+require_once 'database/validation.php';
 
-	$idPoll = $resultPoll[0]['idPoll'];
+$idPoll = cleanInput($_GET['id']);
 
-	/////////////////////
-	//get poll question//
-	/////////////////////
-	try
-	{
-		$stmtQuestions= $dbh->prepare("SELECT * FROM pollsQuestions WHERE idPoll = '$idPoll'");
-		$stmtQuestions->execute();
-		$resultQuestions = $stmtQuestions->fetchALL();
-	}
-	catch (PDOException $e)
-	{
-		die($e->getMessage());
-	}
+if(!is_numeric($idPoll))
+{
+    header('Location: index.php');
+    die();
+}
 
-	$idPollQuestion = $resultQuestions[0]['idPollQuestion'];
-	$pollQuestion = $resultQuestions[0]['question'];
+$sqlite = new SQLite();
+$poll = $sqlite->getPoll($idPoll);
+$pollQuestions = $sqlite->getPollQuestions($idPoll);
 
-	/////////////////////////////
-	//get poll question choices//
-	/////////////////////////////
-	try
-	{
-		$stmtChoices= $dbh->prepare("SELECT * FROM pollsChoices WHERE idPollQuestion = '$idPollQuestion'");
-		$stmtChoices->execute();
-		$resultChoices = $stmtChoices->fetchALL();
-	}
-	catch (PDOException $e)
-	{
-		die($e->getMessage());
-	}
+include ('templates/header.php');
+
 ?>
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<title></title>
-		<meta charset="utf-8">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	</head>
-	<body>
-		<form action="xxx.php" method="POST">
-			<h1> <?= $poolTitle?> </h1>
-			 <img src="<?= 'images/originals/'.$idPoll.'.jpg'?>" alt="<?= $idPollQuestion?>"> 
-			<h2> <?= $pollQuestion?> </h2>
-			<?php
-				foreach ($resultChoices as $choices)
-				{
-					?>
-					<input type="radio" name="pollChoice" value="<?= $choices['id']?>">
-					<?= $choices['choice']?><br><?php
-				}
-			?>
-			<input type="submit" value="Submit">
-		</form>
-	</body>
-</html>
+
+<form action="save_vote.php" method="POST">
+    <h1><?= $poll['title']?></h1>
+    <img src="<?= 'images/originals/'.$poll['idPoll'].'.jpg'?>" alt="poll image">
+
+    <ul>
+    <?php
+    foreach($pollQuestions as $questionArray)
+    {
+        $firstElem = true;
+        $questionId = ''; ?>
+
+
+            <?php
+            foreach($questionArray as $questionElem)
+            {
+                if($firstElem)
+                {?>
+                    <li><h2><?= $questionElem['question']?></h2></li>
+                    <ul>
+
+                    <?php
+                    $questionId = $questionElem['idPollQuestion'];
+                    $firstElem = false;
+                }
+                else
+                {?>
+                    <li>
+                        <input type="radio" name="questionId_<?= $questionId?>" value="<?= $questionElem['idPollChoice']?>" >
+                        <?php echo $questionElem['choice']; ?>
+                    </li>
+                    <?php
+                }
+            }
+            ?>
+        </ul>
+<?php
+        $firstElem = true;
+    }
+    ?>
+    </ul>
+    <input type="submit" value="Submit">
+</form>
+
+<?php include ('templates/footer.php'); ?>
