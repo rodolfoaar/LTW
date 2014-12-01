@@ -155,3 +155,31 @@ table a:hover
     background-color: #3f8dbf;
     border-radius: 10px;
 }
+
+#my_polls h2
+{
+    color: #fcae21;
+    padding: 5px 10px;
+    background-color: #3f8dbf;
+    border-radius: 25px;
+}
+
+#my_polls a
+{
+    margin: 0;
+    text-decoration: none;
+    color: #fff;
+
+    margin: 20px auto;
+    font-family: sans-serif;
+    padding: 5px 15px;
+    background-color: #444;
+    border-radius: 25px;
+}
+
+#my_polls a:hover
+{
+    color: #fcae21;
+    background-color: #3f8dbf;
+    border-radius: 25px;
+}

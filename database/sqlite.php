@@ -323,6 +323,30 @@ class SQLite
         }
     }
 
+    //========================================
+
+    public function getUserPolls($idUser)
+    {
+        $resultPoll = null;
+
+        try
+        {
+            $stmtPoll= $this->dbh->prepare('SELECT * FROM polls WHERE idUser = :id');
+            $stmtPoll->bindParam(':id', $idUser);
+            $stmtPoll->execute();
+            $resultPoll = $stmtPoll->fetchAll();
+
+            return $resultPoll;
+
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+
+        return $resultPoll;
+    }
+
 
 }
 ?>
