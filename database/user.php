@@ -21,7 +21,7 @@ class User {
         else
         {
             $_SESSION['signIn'] = 'Please enter a correct username and password.';
-            header('Location: index.php');
+            header('Location: account.php');
             die();
         }
     }
@@ -55,13 +55,13 @@ class User {
         if($sqlite->isUserTaken($userInfo['username']))
         {
             $_SESSION['signUp'] = 'Username is already in use.';
-            header('Location: index.php');
+            header('Location: account.php');
             die();
         }
 
-        $_SESSION['userId'] = $sqlite->addUser($userInfo);
-        $_SESSION['status'] =  'authorized';
-        header('Location: view_user.php');
+        $sqlite->addUser($userInfo);
+        $_SESSION['signUp'] = 'Username has successfully created.';
+        header('Location: account.php');
         die();
     }
 
