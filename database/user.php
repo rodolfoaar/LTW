@@ -15,6 +15,7 @@ class User {
         {
             $_SESSION['userId'] = $sqlite->getUserID($un);
             $_SESSION['status'] =  'authorized';
+            $_SESSION['username'] = $un;
             header('Location: view_user.php');
             die();
         }
@@ -58,6 +59,12 @@ class User {
             header('Location: account.php');
             die();
         }
+
+        $headers = "From: webmaster@LTWmail.com" . "\r\n" . "CC: " . $userInfo['email'];
+        $to = $userInfo['email'];
+        $subject = "LTW Online Polls signUp";
+        $txt = "You successfully signUp to LTW Online Polls with username: " . $userInfo['username'];
+        mail($to,$subject,$txt,$headers);
 
         $sqlite->addUser($userInfo);
         $_SESSION['signUp'] = 'Username has successfully created.';
