@@ -37,25 +37,19 @@
 		$pollsArray[] = array('idPoll'=> $poll['idPoll'], 'title'=> $poll['title']);
 	}
 
-	$pollsArrayOrdered = array();
-
-	foreach ($pollsArray as $key => $row)
-	{
-		$pollsArrayOrdered[$key] = $row['title'];
-	}
-	
-	array_multisort($pollsArrayOrdered, SORT_ASC, $pollsArray);
-
 	///////////
 	//request//
 	///////////
 	$numberOfPollsRequested = $_POST['numberOfPolls'];
-	$indexRequested = $_POST['index'];
+	$numberOfPollsInDB = sizeof($pollsArray);
 
-	if (isset(array_chunk($pollsArray, $numberOfPollsRequested)[$indexRequested]))
+	if($numberOfPollsInDB >= $numberOfPollsRequested)
 	{
-		echo json_encode(array_chunk($pollsArray, $numberOfPollsRequested)[$indexRequested]);
+		$arr = array_slice($pollsArray, -$numberOfPollsRequested);
+		echo json_encode($arr);
 	}
 	else
-		echo("error!");
+	{
+		echo json_encode($pollsArray);
+	}
 ?>
