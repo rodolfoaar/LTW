@@ -20,6 +20,4 @@ $cleanUserInfo = $valid->validateSignUp($userInfo);
 $user = new User();
 $user->createUser($cleanUserInfo);
 
-header('Location: view_user.php');
-
 ?>

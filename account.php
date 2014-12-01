@@ -6,14 +6,17 @@ session_start();
 require_once 'database/user.php';
 include 'database/validation.php';
 
-if($_SESSION['status'] === 'authorized')
+if (isset($_SESSION['status']))
 {
-    header('Location: view_user.php');
-    die();
-}
-else
-{
-    $_SESSION['status'] = '';
+    if ($_SESSION['status'] === 'authorized')
+    {
+        header('Location: view_user.php');
+        die();
+    }
+    else
+    {
+        $_SESSION['status'] = '';
+    }
 }
 
 // ===============
