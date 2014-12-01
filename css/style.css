@@ -107,6 +107,20 @@ input
     border: solid #fcae21;
 }
 
+input[type="submit"]
+{
+    color: #fff;
+    background-color: #444;
+    border-radius: 25px;
+}
+
+input[type="submit"]:hover
+{
+    color: #fcae21;
+    background-color: #3f8dbf;
+    border-radius: 25px;
+}
+
 #submit_form
 {
     color: #fff;
@@ -166,6 +180,11 @@ table a:hover
     border-radius: 10px;
 }
 
+section#my_polls h2 a#create_poll
+{
+    margin-left: 535px;
+}
+
 #my_polls h2
 {
     color: #fcae21;
@@ -174,13 +193,18 @@ table a:hover
     border-radius: 25px;
 }
 
+#my_polls h3
+{
+    padding-bottom: 10px;
+    border-bottom: solid #3f8dbf;
+    font-family: sans-serif;
+}
+
 #my_polls a
 {
-    margin: 0;
+    margin-left: 10px;
     text-decoration: none;
     color: #fff;
-
-    margin: 20px auto;
     font-family: sans-serif;
     padding: 5px 15px;
     background-color: #444;

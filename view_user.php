@@ -19,15 +19,17 @@ include ('templates/header.php');
 
 <section id="my_polls">
 
-    <h2>My Polls</h2>
+    <h2>My Polls
+        <a id="create_poll" href="createPoll.php">Create new poll</a>
+    </h2>
 
     <?php foreach($userPolls as $poll)
     {?>
         <h3>
-            <a href="answerPoll.php?id=<?= $poll['idPoll']; ?>">
-                <img src="" alt="Poll image">
-                <?= $poll['title']; ?>
-            </a>
+            <?= $poll['title']; ?>
+            <a href="answerPoll.php?id=<?= $poll['idPoll']; ?>"> Poll </a>
+            <a href=""> Results </a>
+            <a href=""> Manage </a>
         </h3>
     <?php }?>
 
