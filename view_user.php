@@ -28,7 +28,7 @@ include ('templates/header.php');
         <h3>
             <?= $poll['title']; ?>
             <a href="answerPoll.php?id=<?= $poll['idPoll']; ?>"> Poll </a>
-            <a href=""> Results </a>
+            <a href="results_poll.php?id=<?= $poll['idPoll']; ?>"> Results </a>
             <a href=""> Manage </a>
         </h3>
     <?php }?>
