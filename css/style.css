@@ -268,3 +268,46 @@ section#answer_form ul li h2
     background-color: #3f8dbf;
     border-radius: 25px;
 }
+
+section#result_poll
+{
+    width: 600px;
+}
+
+section#result_poll img
+{
+    width: 300px;
+    margin: 0 150px;
+}
+
+section#result_poll ul
+{
+    list-style: none;
+}
+
+section#result_poll ul li h2
+{
+    color: #fcae21;
+    padding: 5px 10px;
+    background-color: #3f8dbf;
+    border-radius: 25px;
+}
+
+section#result_poll h1
+{
+    font-family: sans-serif;
+    color: #fcae21;
+    padding: 5px 10px;
+    background-color: #3f8dbf;
+    border-radius: 25px;
+}
+
+section#result_poll ul li a
+{
+    text-decoration: none;
+    font-family: sans-serif;
+    color: #fcae21;
+    padding: 5px 10px;
+    background-color: #3f8dbf;
+    border-radius: 25px;
+}
