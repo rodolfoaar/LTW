@@ -84,6 +84,18 @@ header h4
     display: inline-block;
 }
 
+header div
+{
+    border-style: solid;
+    border-color: rgb(80, 80, 80);
+    background-color: rgb(80, 80, 80);
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 15px;
+    padding: 3px;
+    margin: 0;
+}
+
 section
 {
     margin: auto;

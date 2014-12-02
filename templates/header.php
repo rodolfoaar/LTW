@@ -8,10 +8,12 @@
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/create_poll.js"></script>
+    <script src="js/rtc.js"></script>
 
 </head>
 <body>
     <header>
+        <div id="timeClock"></div>
         <h1>Online Polls</h1>
         <h2>Welcome to the best online polls, where users can create, share, and manage polls!</h2>
 
