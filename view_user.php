@@ -29,7 +29,7 @@ include ('templates/header.php');
             <?= $poll['title']; ?>
             <a href="answerPoll.php?id=<?= $poll['idPoll']; ?>"> Poll </a>
             <a href="results_poll.php?id=<?= $poll['idPoll']; ?>"> Results </a>
-            <a href=""> Manage </a>
+            <a href="managePolls.php?id=<?= $poll['idPoll']; ?>"> Manage </a>
         </h3>
     <?php }?>
 
