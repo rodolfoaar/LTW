@@ -1,5 +1,6 @@
 <html>
 	<head>
+        <meta http-equiv="refresh" content="10">
 		<script>
 			var NUMBER_OF_POLLS_TO_DISPLAY = 5;
 			var index = -1;
