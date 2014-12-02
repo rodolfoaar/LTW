@@ -72,6 +72,25 @@ class User {
         die();
     }
 
+    //========================================
+
+    public function checkUserVote($idPoll)
+    {
+        if(isset($_SESSION['pollVotes']))
+        {
+            foreach($_SESSION['pollVotes'] as $votedPoll)
+            {
+                if($votedPoll === $idPoll)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+
+    }
+
 }
 
 ?>

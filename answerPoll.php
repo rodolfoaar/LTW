@@ -15,6 +15,17 @@ if(!is_numeric($idPoll))
     die();
 }
 
+//Verify if user already voted in this poll
+$user = new User();
+$votedPoll = $user->checkUserVote($idPoll);
+
+if($votedPoll)
+{
+    $linkResult = "results_poll?id=".$idPoll;
+    header("Location: $linkResult");
+    die();
+}
+
 $sqlite = new SQLite();
 $poll = $sqlite->getPoll($idPoll);
 $pollQuestions = $sqlite->getPollQuestions($idPoll);
@@ -25,6 +36,7 @@ include ('templates/header.php');
 
     <section id="answer_form">
         <form action="save_vote.php" method="POST">
+            <input type="text" name="idPoll" value="<?= $poll['idPoll'] ?>" hidden>
             <h1><?= $poll['title']?></h1>
             <img src="<?= 'images/originals/'.$poll['idPoll'].'.jpg'?>" alt="poll image">
 
