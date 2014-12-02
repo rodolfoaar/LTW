@@ -1,6 +1,7 @@
 <?php
 
 require_once 'sqlite.php';
+include 'send_mail.php';
 
 class User {
 
@@ -60,11 +61,10 @@ class User {
             die();
         }
 
-        $headers = "From: webmaster@LTWmail.com" . "\r\n" . "CC: " . $userInfo['email'];
-        $to = $userInfo['email'];
         $subject = "LTW Online Polls signUp";
-        $txt = "You successfully signUp to LTW Online Polls with username: " . $userInfo['username'];
-        mail($to,$subject,$txt,$headers);
+        $msg = "You successfully signUp to LTW Online Polls with username: " . $userInfo['username'];
+
+        sendMail("webmaster@LTWmail.com", $userInfo['email'], "", "", $subject, $msg);
 
         $sqlite->addUser($userInfo);
         $_SESSION['signUp'] = 'Username has successfully created.';
