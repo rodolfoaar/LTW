@@ -10,6 +10,11 @@ $allPolls = $sqlite->getAllPolls();
 
 include ('templates/header.php'); ?>
 
-
+<section id="my_polls">
+	<div id="lastPolls">
+		<h2> Last Polls inserted: </h2>
+		<h2 id="lastPollsInserted"></h2><br>
+	</div>
+</section>
 
 <?php include ('templates/footer.php'); ?>

@@ -9,6 +9,8 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/create_poll.js"></script>
     <script src="js/rtc.js"></script>
+    <script src="js/lastPolls.js"></script>
+    <script src="js/search.js"></script>
 
 </head>
 <body>
@@ -20,7 +22,7 @@
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="showPollsAjax.php">Search</a></li>
+                <li><a href="showPolls.php">Search</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
                 if(isset($_SESSION['username'])) {

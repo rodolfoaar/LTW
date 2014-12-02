@@ -6,34 +6,25 @@ session_start();
 require_once 'database/user.php';
 require_once 'database/sqlite.php';
 
-//If user is NOT logged in, redirects the browser to index.php
-$user = new User();
-$user->isUserLoggedIn();
-
-$sqlite = new SQLite();
-$allPolls = $sqlite->getAllPolls();
-
 include ('templates/header.php');
 
 ?>
+<section id="my_polls">
 
-<table>
-    <tr>
-        <th>idPoll</th><th>idUser</th><th>Title</th><th>Sharing</th>
-    </tr>
+	<div id="polls">
+		<h2> Polls: </h2>
+		<h2 id="allPolls"></h2><br>
+	</div>
+	<input type="button" id="" onClick="lessPolls()" value="<<">
+	<input type="button" id="" onClick="morePolls()" value=">>">
 
-    <?php foreach($allPolls as $poll)
-    {?>
-    <tr>
-        <td><?=$poll['idPoll']?></td>
-        <td><?=$poll['idUser']?></td>
-        <td><?=$poll['title']?></td>
-        <td><?=$poll['sharing']?></td>
-        <td><a href="answerPoll.php?id=<?=$poll['idPoll']?>">Link</a></td>
-    </tr>
-    <?php } ?>
+	<div id="searchPoll">
+		<h2> Search poll: </h2>
+		<input id="wordToSearchFor" type="text" name="word" required="required">
+		<h2 id="pollsFound"></h2><br>
+	</div>
+	<input type="button" id="" onClick="searchPolls()" value="search"><br><br>
 
-</table>
+</section>
 
 <?php include ('templates/footer.php'); ?>
-
