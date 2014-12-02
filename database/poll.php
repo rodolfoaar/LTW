@@ -19,6 +19,9 @@ class Poll
         $sqlite = new SQLite();
         $idPoll = $sqlite->insertPoll($idUser, $validTitle, $sharing);
 
+        //Add poll to voted polls array so poll owner can see results and cant vote on his own poll
+        $_SESSION['pollVotes'][] = $idPoll;
+
         //Save poll image
         $this->saveImgPoll($idPoll, $img_tmp_name);
 
