@@ -18,7 +18,7 @@
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="">Search</a></li>
+                <li><a href="showPollsAjax.php">Search</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
                 if(isset($_SESSION['username'])) {
