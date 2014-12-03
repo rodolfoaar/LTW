@@ -347,6 +347,19 @@ class SQLite
         return $resultPoll;
     }
 
-
+    public function changePollName($idPoll, $titlePoll)
+    {
+        try
+        {
+            $stmt = $this->dbh->prepare('UPDATE polls SET title = :titlePoll WHERE idPoll = :idPoll');
+            $stmt->bindParam(':titlePoll', $titlePoll);
+            $stmt->bindParam(':idPoll', $idPoll);
+            $stmt->execute();
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+        }
+    }
 }
 ?>

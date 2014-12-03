@@ -21,7 +21,7 @@ $votedPoll = $user->checkUserVote($idPoll);
 
 if(!$votedPoll)
 {
-    $linkResult = "answerPoll?id=".$idPoll;
+    $linkResult = "answerPoll.php?id=".$idPoll;
     header("Location: $linkResult");
     die();
 }

@@ -12,7 +12,7 @@ $poll->submitPoll($_POST);
 $_SESSION['pollVotes'][] = $_POST['idPoll'];
 
 //Redirect to poll results
-$linkResult = "results_poll?id=".$_POST['idPoll'];
+$linkResult = "results_poll.php?id=".$_POST['idPoll'];
 header("Location: $linkResult");
 
 ?>
