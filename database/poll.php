@@ -6,7 +6,7 @@ require_once 'database/validation.php';
 class Poll
 {
 
-    public function createPoll($idUser, $formInfo, $img_tmp_name)
+    public function createPoll($idUser, $formInfo, $img_tmp_name, $sharing)
     {
         $validTitle = cleanInput($formInfo['pollTitle']);
 
@@ -14,6 +14,8 @@ class Poll
         {
             $sharing = 'public';
         }
+        else
+            $sharing = 'private';
 
         //Create poll in database
         $sqlite = new SQLite();

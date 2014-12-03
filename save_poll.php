@@ -12,7 +12,7 @@ if(!isset($_POST))
 }
 
 $poll = new Poll();
-$poll->createPoll($_SESSION['userId'], $_POST, $_FILES['picture']['tmp_name']);
+$poll->createPoll($_SESSION['userId'], $_POST, $_FILES['picture']['tmp_name'], $_POST['privatePoll']);
 
 header('Location: view_user.php');
 
