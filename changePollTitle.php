@@ -23,7 +23,7 @@
 		{
 			if((isset($key['choiceCount']) && $key['choiceCount'] > 0))
 			{
-				die("The survey has already been voted on and can not chage the name!");
+				die("The poll has already been voted on and can not chage the name!");
 			}
 				
 		}
