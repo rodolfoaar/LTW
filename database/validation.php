@@ -6,7 +6,7 @@ class Validation
 
     public function validateSignIn($username, $password)
     {
-        session_unset();
+        //session_unset();
 
         $this->submit_form = true;
         $_SESSION['formSignIn']['username'] = $username;
@@ -21,7 +21,7 @@ class Validation
         $info_sign_in['password'] = $data;
 
         if ($this->submit_form) {
-            session_unset();
+            //session_unset();
             return $info_sign_in;
         }
 
@@ -33,7 +33,7 @@ class Validation
 
     public function validateSignUp($userInfo)
     {
-        session_unset();
+        //session_unset();
 
         $this->submit_form = true;
         $_SESSION['formSignUp']['username'] = $userInfo['username'];
@@ -52,6 +52,7 @@ class Validation
         if ($data !== $confPass) {
             $this->submit_form = false;
             $_SESSION['errorSignUp']['confirmPassword'] = "Doesn't match password.";
+            $_SESSION['signUp'] = "Password fields don't match.";
         }
 
         $data = $this->validateAge($userInfo['age'], 'errorSignUp');
@@ -64,7 +65,7 @@ class Validation
         $info_sign_up['email'] = $data;
 
         if ($this->submit_form) {
-            session_unset();
+            //session_unset();
             return $info_sign_up;
         }
 

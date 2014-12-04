@@ -29,19 +29,6 @@ if (!isset($_SESSION['formSignUp']['username']))
 if (!isset($_SESSION['formSignUp']['email']))
     $_SESSION['formSignUp']['email'] = '';
 
-if (!isset($_SESSION['errorSignUp']['username']))
-    $_SESSION['errorSignUp']['username'] = '';
-if (!isset($_SESSION['errorSignUp']['password']))
-    $_SESSION['errorSignUp']['password'] = '';
-if (!isset($_SESSION['errorSignUp']['confirmPassword']))
-    $_SESSION['errorSignUp']['confirmPassword'] = '';
-if (!isset($_SESSION['errorSignUp']['age']))
-    $_SESSION['errorSignUp']['age'] = '';
-if (!isset($_SESSION['errorSignUp']['gender']))
-    $_SESSION['errorSignUp']['gender'] = '';
-if (!isset($_SESSION['errorSignUp']['email']))
-    $_SESSION['errorSignUp']['email'] = '';
-
 // ===============
 
 if (!isset($_SESSION['signIn']))
@@ -49,11 +36,6 @@ if (!isset($_SESSION['signIn']))
 
 if (!isset($_SESSION['formSignIn']['email']))
     $_SESSION['formSignIn']['username'] = '';
-
-if (!isset($_SESSION['errorSignIn']['username']))
-    $_SESSION['errorSignIn']['username'] = '';
-if (!isset($_SESSION['errorSignIn']['password']))
-    $_SESSION['errorSignIn']['password'] = '';
 
 include ('templates/header.php');
 
@@ -68,14 +50,14 @@ include ('templates/header.php');
 
                 <label class="user">Username:
                     <input type="text" name="username_sign_in" value ="<?php echo getFieldVal($_SESSION['formSignIn']['username']); ?>" required="required">
-                    <span class="error">* <?php echo getFieldVal($_SESSION['errorSignIn']['username']); ?></span>
+                    <span class="error">*</span>
                 </label>
 
                 <br><br>
 
                 <label class="pass">Password:
                     <input type="password" name="password_sign_in" required="required">
-                    <span class="error">* <?php echo getFieldVal($_SESSION['errorSignIn']['password']); ?></span>
+                    <span class="error">*</span>
                 </label>
 
                 <p class="error">* - required field</p>
@@ -97,28 +79,27 @@ include ('templates/header.php');
 
                 <label> Username:
                     <input type="text" name="username" value ="<?php echo getFieldVal($_SESSION['formSignUp']['username']); ?>" required="required">
-                    <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['username']); ?></span>
+                    <span class="error">*</span>
                 </label>
 
                 <br><br>
 
                 <label> Password:
                     <input type="password" name="password" required="required">
-                    <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['password']); ?></span>
+                    <span class="error">*</span>
                 </label>
 
                 <br><br>
 
                 <label> Confirm password:
                     <input type="password" name="confirmPassword" required="required">
-                    <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['confirmPassword']); ?></span>
+                    <span class="error">*</span>
                 </label>
 
                 <br><br>
 
                 <label> Age:
                     <input type="number" name="age" min="1" max="99" value="<?php echo getFieldVal($_SESSION['formSignUp']['age']); ?>" step="1">
-                    <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['age']); ?></span>
                 </label>
 
                 <br><br>
@@ -132,13 +113,12 @@ include ('templates/header.php');
                 <label>Female
                     <input type="radio" name="gender" value="female">
                 </label>
-                <span class="error"><?php echo getFieldVal($_SESSION['errorSignUp']['gender']); ?></span>
 
                 <br><br>
 
                 <label> E-mail:
                     <input type="email" name="email" value ="<?php echo getFieldVal($_SESSION['formSignUp']['email']); ?>" required="required">
-                    <span class="error">* <?php echo getFieldVal($_SESSION['errorSignUp']['email']); ?></span>
+                    <span class="error">*</span>
                 </label>
 
                 <p class="error">* - required field</p>
@@ -149,4 +129,17 @@ include ('templates/header.php');
         </form>
     </section>
 
-<?php include ('templates/footer.php'); ?>
+<?php
+
+// ===============
+$_SESSION['signUp'] = '';
+
+$_SESSION['formSignUp']['username'] = '';
+$_SESSION['formSignUp']['email'] = '';
+
+// ===============
+$_SESSION['signIn'] = '';
+
+$_SESSION['formSignIn']['username'] = '';
+
+include ('templates/footer.php'); ?>

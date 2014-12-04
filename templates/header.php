@@ -25,7 +25,7 @@
                 <li><a href="showPolls.php">Search</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
-                if(isset($_SESSION['username'])) {
+                if(isset($_SESSION['status']) && $_SESSION['status'] === 'authorized') {
                     echo('<li><a href="log_out.php">SignOut</a></li>');
                 }
                 ?>

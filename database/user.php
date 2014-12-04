@@ -32,8 +32,9 @@ class User {
 
     public function logOutUser()
     {
-        session_unset();
-        session_destroy();
+        //session_unset();
+        //session_destroy();
+        $_SESSION['status'] = '';
         header('Location: index.php');
     }
 
