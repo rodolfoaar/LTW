@@ -41,4 +41,8 @@ include ('templates/header.php');
 
 </section>
 
-<?php include ('templates/footer.php'); ?>
+<?php
+
+$_SESSION['errorManage'] = '';
+
+include ('templates/footer.php'); ?>
