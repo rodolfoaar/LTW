@@ -25,7 +25,7 @@ class Validation
             return $info_sign_in;
         }
 
-        header('Location: index.php');
+        header('Location: account.php');
         die();
     }
 
@@ -68,7 +68,7 @@ class Validation
             return $info_sign_up;
         }
 
-        header('Location: index.php');
+        header('Location: account.php');
         die();
     }
 
