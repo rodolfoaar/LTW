@@ -32,7 +32,7 @@
             </ul>
         </nav>
         <?php
-        if(isset($_SESSION['username'])) {
+        if(isset($_SESSION['status']) && $_SESSION['status'] === 'authorized') {
             echo('<h4>User: '.$_SESSION['username'].'</h4>');
         }
         ?>
