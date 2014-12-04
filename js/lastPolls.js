@@ -50,8 +50,11 @@ function lastPolls()
                 a.title = titlePoll;
                 a.href = "answerPoll.php?id="+idPoll;
 
-                document.getElementById("lastPollsInserted").appendChild(a);
-                document.getElementById("lastPollsInserted").appendChild(br);
+                var h = document.createElement('h2');
+                h.appendChild(a);
+
+                document.getElementById("lastPollsInserted").appendChild(h);
+                //document.getElementById("lastPollsInserted").appendChild(br);
 
                 var aux = "answerPoll.php?id="+idPoll;
                 console.log(aux);

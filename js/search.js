@@ -61,8 +61,11 @@ function morePolls()
 	                a.title = titlePoll;
 	                a.href = "answerPoll.php?id="+idPoll;
 
-	                document.getElementById("allPolls").appendChild(a);
-	                document.getElementById("allPolls").appendChild(br);
+                    var h = document.createElement('h2');
+                    h.appendChild(a);
+
+	                document.getElementById("allPolls").appendChild(h);
+	                //document.getElementById("allPolls").appendChild(br);
 
 	                var aux = "answerPoll.php?id="+idPoll;
 	                console.log(aux);
@@ -115,8 +118,11 @@ function lessPolls()
 	                a.title = titlePoll;
 	                a.href = "answerPoll.php?id="+idPoll;
 
-	                document.getElementById("allPolls").appendChild(a);
-	                document.getElementById("allPolls").appendChild(br);
+                    var h = document.createElement('h2');
+                    h.appendChild(a);
+
+	                document.getElementById("allPolls").appendChild(h);
+	                //document.getElementById("allPolls").appendChild(br);
 
 	                var aux = "answerPoll.php?id="+idPoll;
 	                console.log(aux);
@@ -173,8 +179,11 @@ function searchPolls()
                 a.title = titlePoll;
                 a.href = "answerPoll.php?id="+idPoll;
 
-                document.getElementById("pollsFound").appendChild(a);
-                document.getElementById("pollsFound").appendChild(br);
+                var h = document.createElement('h2');
+                h.appendChild(a);
+
+                document.getElementById("pollsFound").appendChild(h);
+                //document.getElementById("pollsFound").appendChild(br);
 
                 var aux = "answerPoll.php?id="+idPoll;
                 console.log(aux);

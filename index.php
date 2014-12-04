@@ -5,8 +5,8 @@ session_start();
 
 require_once 'database/sqlite.php';
 
-$sqlite = new SQLite();
-$allPolls = $sqlite->getAllPolls();
+/*$sqlite = new SQLite();
+$allPolls = $sqlite->getAllPolls();*/
 
 include ('templates/header.php'); ?>
 
