@@ -1,8 +1,41 @@
-//////////////////////////////////////////////////////////////////////
-//		username								password			//
-//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//                group elements                //
+//////////////////////////////////////////////////
+                  Angelo Lopes
+                  Leonel Peixoto
+                  Rodolfo Rodrigues
 
-		admin									admin123
-		angelo									angelo123
-		leonel									leonel123
-		rodolfo									rodolfo123
+
+//////////////////////////////////////////////////
+//           requirements implemented           //
+//////////////////////////////////////////////////
+1. Users are able to register an account;
+2. Users are able to login/logout from the system;
+3. Registered users are able to create a poll;
+4. Registered users are able to manage their polls
+   (change the Poll's name if anyone has not voted on it);
+5. Polls contain one image and several possible answers;
+6. Users are able to list, search and answer to polls;
+7. One user can't answer twice to the same poll;
+8. Poll owners and users that already answered a poll,
+   are able to see the poll results.
+
+
+//////////////////////////////////////////////////
+//              extra requirements              //
+//////////////////////////////////////////////////
+1. Poll owners are able to decide if the poll is
+   public or private;
+2. Private polls don't appear in listings or searches
+   (Only the poll URL should needed to access it);
+3. Polls can have more than one question;
+4. Possibility to share a poll using email.
+
+
+//////////////////////////////////////////////////
+//          username          password          //
+//////////////////////////////////////////////////
+            admin             admin123
+            angelo            angelo123
+            leonel            leonel123
+            rodolfo           rodolfo123
