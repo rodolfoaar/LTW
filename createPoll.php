@@ -23,7 +23,7 @@ include ('templates/header.php');
             <input type="checkbox" name="privatePoll" value="private">Private Poll
         </p>
 
-        <p>Insert image: <input type="file" name="picture" ></p>
+        <p>Insert image: <input type="file" name="picture" required></p>
 
         <ul id="poll_list">
 
