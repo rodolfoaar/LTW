@@ -23,7 +23,9 @@
 		{
 			if((isset($key['choiceCount']) && $key['choiceCount'] > 0))
 			{
-				die("The poll has already been voted on and can not chage the name!");
+                $_SESSION['errorManage'] = "The poll has already been voted on and can not change the name!";
+                header('Location: view_user.php');
+				die();
 			}
 				
 		}

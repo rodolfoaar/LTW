@@ -18,11 +18,16 @@
 	$sqlite = new SQLite();
 	$poll = $sqlite->getPoll($idPoll);
 
+
+
 	include ('templates/header.php');
 ?>
 
 <section id="result_poll">
 	<h1><?= $poll['title']?></h1>
+
+
+
 	<form action="changePollTitle.php" method="post">
 		<input type="hidden" name="idPoll" value="<?= $idPoll?>">
 		<label>New title:
