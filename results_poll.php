@@ -19,6 +19,15 @@ if(!is_numeric($idPoll))
 $user = new User();
 $votedPoll = $user->checkUserVote($idPoll);
 
+//Verify if user is poll owner
+$sqlite = new SQLite();
+$poll = $sqlite->getPoll($idPoll);
+
+if($_SESSION['userId'] === $poll['idUser'])
+{
+    $votedPoll = true;
+}
+
 if(!$votedPoll)
 {
     $linkResult = "answerPoll.php?id=".$idPoll;
@@ -26,8 +35,6 @@ if(!$votedPoll)
     die();
 }
 
-$sqlite = new SQLite();
-$poll = $sqlite->getPoll($idPoll);
 $pollQuestions = $sqlite->getPollQuestions($idPoll);
 
 include ('templates/header.php');
