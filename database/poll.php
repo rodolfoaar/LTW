@@ -5,7 +5,6 @@ require_once 'database/validation.php';
 
 class Poll
 {
-
     public function createPoll($idUser, $formInfo, $img_tmp_name, $sharing)
     {
         $validTitle = cleanInput($formInfo['pollTitle']);

@@ -36,6 +36,8 @@ include ('templates/header.php');
 
 <section id="result_poll">
 
+    <script src="js/share.js"></script>
+
         <h1><?= $poll['title']?></h1>
         <img src="<?= 'images/originals/'.$poll['idPoll'].'.jpg'?>" alt="poll image">
 
@@ -77,6 +79,17 @@ include ('templates/header.php');
             }
             ?>
         </ul>
+
+        <input type="button" value="Share" onclick="showShareForm()">
+        <br><br>
+        <p id="share" hidden="hidden"> Your name:
+            <input type="text" id="username" value ="<?php if(isset($_SESSION['username'])) echo getFieldVal($_SESSION['username']); ?>" required="required">
+            <br>e-mail of person with you want to share this poll:
+            <input type="text" id="destinationMail" value ="" required="required">
+            <input type="button" value="Send e-mail" onclick="sendMailtoShare()">
+        </p>
+        <p id="emailStatus" ></p>
+
 
 </section>
 

@@ -1,12 +1,7 @@
 <?php
 
 function sendMail($from, $to, $cc, $bcc, $subject, $msg)
-{
-	//$headers = "From: webmaster@LTWmail.com" . "\r\n" . "CC: " . $userInfo['email'];
-	//$to = $userInfo['email'];
-	//$subject = "LTW Online Polls signUp";
-	//$txt = "You successfully signUp to LTW Online Polls with username: " . $userInfo['username'];
-	
+{	
 	if($cc != "" && $bcc != "")
 		$headers = "From: " . $from . "\r\n" . "CC: " . $cc . "\r\n" . "BCC: " . $bcc;
 	else if ($cc != "")

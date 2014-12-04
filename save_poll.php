@@ -17,4 +17,3 @@ $poll->createPoll($_SESSION['userId'], $_POST, $_FILES['picture']['tmp_name'], $
 header('Location: view_user.php');
 
 ?>
-
